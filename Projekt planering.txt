@@ -1,0 +1,28 @@
+SPEL ALTERNATIV:
+
+//Prioriterad
+(1)
+2 lokala spelare.
+Minst 12 par kort.
+Tur baserat spel.
+Högst poäng vinner.
+
+//Oprioriterad
+(2)
+Spela själv.
+(2.1)
+Försöka få så bra rundor som möjligt.
+(2.2)
+Spela mot klockan.
+
+
+TEMA:
+James Bond 007;
+
+Kort på James Bond, skurkar etc.
+
+
+LJUD:
+
+//Icke alls prioriterad
+Ljud i spelet
