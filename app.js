@@ -3,7 +3,59 @@
 // Variables including from DOM
 const gameBoard = document.querySelector('.game-board');
 
-// object containing players name, score
+// object containing players name, score & card names
+
+const cardArray = [
+  {
+    title: '2morrow',
+    img: 'assets/2morrow.jpg'
+  },
+  {
+    title: 'aview',
+    img: 'assets/aview.jpg'
+  },
+  {
+    title: 'casino',
+    img: 'assets/casino.jpg'
+  },
+  {
+    title: 'dieanother',
+    img: 'assets/dieanother.jpg'
+  },
+  {
+    title: 'goldeneye',
+    img: 'assets/goldeneye.jpg'
+  },
+  {
+    title: 'licence',
+    img: 'assets/licence.jpg'
+  },
+  {
+    title: 'notime',
+    img: 'assets/notime.jpg'
+  },
+  {
+    title: 'quantum',
+    img: 'assets/quantum.jpg'
+  },
+  {
+    title: 'skyfall',
+    img: 'assets/skyfall.jpg'
+  },
+  {
+    title: 'spectre',
+    img: 'assets/spectre.jpg'
+  },
+  {
+    title: 'theliving',
+    img: 'assets/theliving.jpg'
+  },
+  {
+    title: 'theworld',
+    img: 'assets/theworld.jpg'
+  },
+];
+
 const players = [
     { name: 'kalle', score: 0 }, // name from DOM via function start game
     { name: 'pelle', score: 0 },
