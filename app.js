@@ -1,6 +1,7 @@
 // Memory examination exercise course JavScript 1, class KYHA_FE22
 
 // Variables including from DOM
+const gameBoard = document.querySelector('.game-board');
 
 // object containing players name, score
 const players = [
@@ -25,13 +26,48 @@ function randomizeArray(array) {
 randomizeArray(array);
 console.log(result);
 
-
 // function start game => add players, hide registration, show game body, run game,
 
-// function Create cards data-value for compare
-
 // function Click card to flip
+function handleCardClick(card) {}
 
+// function Create cards data-value for compare
+function createCard(card) {
+    let cardContainer = document.createElement('div');
+    let cardImg = document.createElement('div');
+    let cardBack = document.createElement('img');
+    let cardFront = document.createElement('img');
+
+    cardContainer.classList.add('card-container');
+
+    cardImg.classList.add('img-card');
+
+    cardBack.setAttribute('src', 'assets/CardBack007.png');
+    cardBack.classList.add('img-back');
+
+    cardFront.setAttribute('src', card.img);
+    cardFront.setAttribute('data-name', card.title);
+    cardFront.classList.add('img-front');
+
+    cardImg.append(cardBack, cardFront);
+
+    cardContainer.append(cardImg);
+
+    // Add a listener to every symbol button to be created
+    cardContainer.addEventListener('click', (event) => {
+        console.log(event);
+    });
+
+    return cardContainer;
+}
+
+// function to add all cards to the game board
+
+function appendSymbolButtons(container) {
+    for (let card of cardsArray) {
+        container.append(createCard(card));
+    }
+}
 // function compare cards
 
 // eventlistener
