@@ -22,10 +22,13 @@ for (i = n; i >= 1; i--) {
 }
 console.log(result);
 
+
 // function start game => add players, hide registration, show game body, run game,
 
 // function Create cards data-value for compare
-
+  function pushImages () {
+    
+  }
 // function Click card to flip
 
 // function compare cards
