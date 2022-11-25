@@ -3,11 +3,22 @@
 // Variables including from DOM
 const gameBoard = document.querySelector('.game-board');
 
+const playerOneNameField = document.querySelector('#reg-player-one');
+const playerTwoNameField = document.querySelector('#reg-player-two');
+
+const startGameBtn = document.querySelector('.start-game-btn');
+const gameBodyContainer = document.querySelector('.game-body');
+
+const playerRegistrationFields = document.querySelector('.player-reg');
+
 let cardsClickedCounter = 0;
 
 const storedCards = []; // For storing which two cards is clicked for comparison
 
-// object containing players name, score & card names
+const playerOne = { name: '', score: 0 }; // .name will take value of playerOneNameField when started thourgt startGameBtn
+const playerTwo = { name: '', score: 0 };
+
+const players = [playerOne, playerTwo];
 
 const cardArray = [
     {
@@ -61,10 +72,6 @@ const cardArray = [
 ];
 
 console.log(cardArray[2].title);
-const players = [
-    { name: 'kalle', score: 0 }, // name from DOM via function start game
-    { name: 'pelle', score: 0 },
-];
 
 //Array ranomdizer insp. https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Modern_method
 const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -141,4 +148,12 @@ function startGame() {
 
 // eventlistener
 
-startGame();
+startGameBtn.addEventListener('click', () => {
+    playerOne.name = playerOneNameField.value;
+    playerTwo.name = playerTwoNameField.value;
+    // playerRegistrationFields.setAttribute('style', 'display: none;');
+    // gameBodyContainer.setAttribute('style', 'display: block;');
+    startGame();
+});
+
+// startGame();
