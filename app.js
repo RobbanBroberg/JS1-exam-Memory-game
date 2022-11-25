@@ -7,7 +7,6 @@ let cardsClickedCounter = 0;
 const storedCards = []; // For storing which two cards is clicked for comparison
 
 let gameTurn = 0;
-let cardOne, cardTwo;
 
 
 
@@ -91,39 +90,50 @@ console.log(result);
 
 // functions to lock-cards, board and rotate non matching cards
 
-// function rotateNonMatchingCards(card) {
-//   img-card.classList.remove('img-card-toggle');
-// };
+function removeListenerFromMatchingCards(storedCards){
+
+  let cardOneParent = storedCards[0].target.parentNode;
+  let cardTwoParent = storedCards[1].target.parentNode;
+
+  cardOneParent.removeEventListener('click', handleCardClick);
+  cardTwoParent.removeEventListener('click', handleCardClick);
+}
 
 function compareCards(storedCards) {
-  if(storedCards[0] == storedCards[1]){
-    gameTurn = gameTurn;
-    //lås valda kort
-    //lockCards();
+
+  let cardOneValue = storedCards[0].target.getAttribute('data-name');
+  let cardTwoValue = storedCards[1].target.getAttribute('data-name');
+
+  let parent1 = storedCards[0].target.parentNode;
+  let parent2 = storedCards[1].target.parentNode;
+  
+  if(cardOneValue == cardTwoValue){
+    //lock matching cards
+    removeListenerFromMatchingCards(storedCards);
+    //give points to the player::::
+
+    gameTurn = gameTurn; //current player plays again
+
   }else{
+    // TODO: fix its own function
+    setTimeout(() => {
+      parent1.classList.remove('img-card-rotate');
+      parent2.classList.remove('img-card-rotate');}
+      ,1500);
     gameTurn = (gameTurn + 1) % 2;
-    //vänd tillbaka korten
-    //rotateNonMatchingCards();
   }
   storedCards.splice(0, 2);
-;}
+};
 
 
 // function Click card to flip
 function handleCardClick(card) {
     let parent = card.target.parentNode;
-    parent.classList.toggle('img-card-rotate');
+    parent.classList.add('img-card-rotate');
     cardsClickedCounter = (cardsClickedCounter + 1) % 2;
-    storedCards.push(card.target);
-    // if (cardsClickedCounter == 0) {
-    //     compareCards();
-    // }
-    console.log(
-      `storedCards: ${storedCards}, card conuter: ${cardsClickedCounter}`
-    );
-    console.log(card);
-    if (cardsClickedCounter == 0) {
-        compareCards(storedCards);
+    storedCards.push(card);
+    if(cardsClickedCounter == 0){
+      compareCards(storedCards);
     }
 }
 
@@ -150,14 +160,15 @@ function createCard(card) {
 
     cardImg.append(cardBack, cardFront);
     // Add a listener to every card to be created
-    cardContainer.addEventListener('click', handleCardClick);
+    cardImg.addEventListener('click', handleCardClick);
+    cardContainer.append(cardImg);
 
     return cardContainer;
 }
 
 // function to add all cards to the game board
 
-function appendCardsToBoard(container) {
+function appendCardsToBoard(container, cardArray  ) {
     for (let card of cardArray) {
         container.append(createCard(card));
     }
@@ -165,7 +176,7 @@ function appendCardsToBoard(container) {
 
 function startGame() {
     cardsClickedCounter = 0;
-    appendCardsToBoard(gameBoard);
+    appendCardsToBoard(gameBoard, result);
 }
 // function compare cards
 
