@@ -7,6 +7,8 @@ const playerOneNameField = document.querySelector('#reg-player-one');
 const playerTwoNameField = document.querySelector('#reg-player-two');
 
 const startGameBtn = document.querySelector('.start-game-btn');
+const restartGameBtn = document.querySelector('.restart-game-btn');
+const quitGameBtn = document.querySelector('.quit-to-menu-btn');
 const gameBodyContainer = document.querySelector('.game-body');
 
 const playerRegistrationFields = document.querySelector('.player-reg');
@@ -189,8 +191,8 @@ function startGame() {
 startGameBtn.addEventListener('click', () => {
     playerOne.name = playerOneNameField.value;
     playerTwo.name = playerTwoNameField.value;
-    // playerRegistrationFields.setAttribute('style', 'display: none;');
-    // gameBodyContainer.setAttribute('style', 'display: block;');
+    playerRegistrationFields.setAttribute('style', 'display: none;');
+    gameBodyContainer.setAttribute('style', 'display: flex;');
     startGame();
 });
 
