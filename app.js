@@ -4,8 +4,12 @@
 const gameBoard = document.querySelector('.game-board');
 
 let cardsClickedCounter = 0;
-
 const storedCards = []; // For storing which two cards is clicked for comparison
+
+let gameTurn = 0;
+let cardOne, cardTwo;
+
+
 
 // object containing players name, score & card names
 
@@ -60,7 +64,6 @@ const cardArray = [
     },
 ];
 
-console.log(cardArray[2].title);
 const players = [
     { name: 'kalle', score: 0 }, // name from DOM via function start game
     { name: 'pelle', score: 0 },
@@ -83,19 +86,45 @@ console.log(result);
 
 // function start game => add players, hide registration, show game body, run game,
 
+
+// function to compare the cards
+
+// functions to lock-cards, board and rotate non matching cards
+
+// function rotateNonMatchingCards(card) {
+//   img-card.classList.remove('img-card-toggle');
+// };
+
+function compareCards(storedCards) {
+  if(storedCards[0] == storedCards[1]){
+    gameTurn = gameTurn;
+    //lås valda kort
+    //lockCards();
+  }else{
+    gameTurn = (gameTurn + 1) % 2;
+    //vänd tillbaka korten
+    //rotateNonMatchingCards();
+  }
+  storedCards.splice(0, 2);
+;}
+
+
 // function Click card to flip
 function handleCardClick(card) {
     let parent = card.target.parentNode;
     parent.classList.toggle('img-card-rotate');
     cardsClickedCounter = (cardsClickedCounter + 1) % 2;
     storedCards.push(card.target.getAttribute('data-name'));
-    // if (cardsClickedCounter == 0) {
-    //     compareCards();
-    // }
     console.log(
-        `storedCards: ${storedCards}, card conuter: ${cardsClickedCounter}`
+      `storedCards: ${storedCards}, card conuter: ${cardsClickedCounter}`
     );
+    console.log(card);
+    if (cardsClickedCounter == 0) {
+        compareCards(storedCards);
+    }
 }
+
+
 
 // function Create cards, creates HTML and adds card image and data-value for later compare
 function createCard(card) {
@@ -122,7 +151,7 @@ function createCard(card) {
 
     // Add a listener to every card to be created
     cardContainer.addEventListener('click', handleCardClick);
-
+    
     return cardContainer;
 }
 
