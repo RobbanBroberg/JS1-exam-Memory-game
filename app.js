@@ -10,6 +10,11 @@ const startGameBtn = document.querySelector('.start-game-btn');
 const restartGameBtn = document.querySelector('.restart-game-btn');
 const quitGameBtn = document.querySelector('.quit-to-menu-btn');
 const gameBodyContainer = document.querySelector('.game-body');
+const displayPlayerOneName = document.querySelector('.player-one-name');
+const displayPlayerOneScore = document.querySelector('.player-one-score');
+const displayPlayerTwoName = document.querySelector('.player-two-name');
+const displayPlayerTwoScore = document.querySelector('.player-two-score');
+const displayCurrentPlayer = document.querySelector('.current-player');
 
 const playerRegistrationFields = document.querySelector('.player-reg');
 
@@ -96,11 +101,13 @@ function randomizeArray(array) {
 
 // display update
 function scoreBoardUpdater() {
-    let currentPlayer = players[gameTurn];
-    playerTurn.innerText = currentPlayer.name;
-
-    playerOneScore.innerText = `${players[0].name}: ${players[0].score}`;
-    playerTwoScore.innerText = `${players[1].name}: ${players[1].score}`;
+    let currentPlayer = players[gameTurn].name;
+    displayCurrentPlayer.innerText = `${currentPlayer}`;
+    
+    displayPlayerOneName.innerText = `${playerOne.name}`;
+    displayPlayerOneScore.innerText = `${playerOne.score}`;
+    displayPlayerTwoName.innerText = `${playerTwo.name}`;
+    displayPlayerTwoScore.innerText = `${playerTwo.score}`;
 }
 
 function removeListenerFromMatchingCards(storedCards) {
@@ -117,7 +124,6 @@ function returnNonMatchingCardsFaceDown(storedCards) {
     let cardOneParent = storedCards[0].target.parentNode;
     let cardTwoParent = storedCards[1].target.parentNode;
 
-    console.log(storedCards[0]);
     setTimeout(() => {
         cardOneParent.classList.remove('img-card-rotate');
         cardTwoParent.classList.remove('img-card-rotate');
@@ -125,6 +131,7 @@ function returnNonMatchingCardsFaceDown(storedCards) {
 }
 
 function compareCards(storedCards) {
+
     let cardOneValue = storedCards[0].target.getAttribute('data-name');
     let cardTwoValue = storedCards[1].target.getAttribute('data-name');
 
@@ -135,7 +142,7 @@ function compareCards(storedCards) {
         //lock matching cards
         removeListenerFromMatchingCards(storedCards);
         //give points to the player::::
-
+        players[gameTurn].score += 1;
         gameTurn = gameTurn; //current player plays again
     } else {
         // Turn over non matching cards
@@ -143,6 +150,7 @@ function compareCards(storedCards) {
         gameTurn = (gameTurn + 1) % 2;
     }
     storedCards.splice(0, 2);
+    scoreBoardUpdater();
 }
 
 // function Click card to flip
@@ -197,6 +205,7 @@ function startGame() {
     let dubbleCards = cardArray.concat(cardArray);
     let randomizedCards = randomizeArray(dubbleCards);
     appendCardsToBoard(gameBoard, randomizedCards);
+    scoreBoardUpdater();
 }
 // function compare cards
 
