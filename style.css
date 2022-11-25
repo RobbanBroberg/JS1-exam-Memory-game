@@ -12,12 +12,23 @@
     box-sizing: border-box;
 }
 
+/* player reg */
+
+.player-reg {
+    margin: 2em auto;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Game */
 .game-body {
     width: 1300px;
-    display: flex;
-    justify-content: space-between;
+    display: none;
+    justify-content: center;
     margin: 2em auto;
-    padding: 2em;
+    /* padding: 2em; */
+    border: 2px solid red;
 }
 .game-board {
     background-color: var(--clr-neutral-200);
@@ -29,20 +40,7 @@
     position: relative;
     box-shadow: inset 0 0 5px grey;
 }
-.score-container {
-    background-color: var(--clr-neutral-200);
-    width: 300px;
-    margin-right: 2.3em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.display {
-    background-color: white;
-    width: 80%;
-    height: 90%;
-    box-shadow: inset 0 0 5px grey;
-}
+
 .card-container {
     display: inline-block;
     position: relative;
@@ -75,4 +73,46 @@
     position: absolute;
     backface-visibility: hidden;
     transform: rotateY(180deg);
+}
+
+/* Score */
+.score-container {
+    background-color: var(--clr-neutral-200);
+    width: 300px;
+    padding: 1em;
+    /* margin-right: 2.3em; */
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+.turn-display,
+.score-board,
+.history {
+    background-color: white;
+    padding: 0.5em;
+    margin-bottom: 1rem;
+    /* width: 80%; */
+    box-shadow: inset 0 0 5px grey;
+}
+
+.turn-display {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.score-board {
+    display: flex;
+    justify-content: space-evenly;
+}
+.score-board div {
+    text-align: center;
+}
+.history {
+    height: 450px;
+    overflow-y: scroll;
+}
+
+.history-title {
+    border-bottom: 1px solid grey;
 }
