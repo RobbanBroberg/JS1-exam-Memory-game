@@ -210,4 +210,8 @@ startGameBtn.addEventListener('click', () => {
     startGame();
 });
 
+restartGameBtn.addEventListener('click', () => {
+    gameBoard.innerHTML = '';
+    startGame();
+});
 // startGame();
