@@ -10,6 +10,7 @@ const startGameBtn = document.querySelector('.start-game-btn');
 const restartGameBtn = document.querySelector('.restart-game-btn');
 const quitGameBtn = document.querySelector('.quit-to-menu-btn');
 const gameBodyContainer = document.querySelector('.game-body');
+
 const displayPlayerOneName = document.querySelector('.player-one-name');
 const displayPlayerOneScore = document.querySelector('.player-one-score');
 const displayPlayerTwoName = document.querySelector('.player-two-name');
@@ -104,9 +105,9 @@ function scoreBoardUpdater() {
     let currentPlayer = players[gameTurn].name;
     displayCurrentPlayer.innerText = `${currentPlayer}`;
     
-    displayPlayerOneName.innerText = `${playerOne.name}`;
+    displayPlayerOneName.innerText = `${playerOne.name}:`;
     displayPlayerOneScore.innerText = `${playerOne.score}`;
-    displayPlayerTwoName.innerText = `${playerTwo.name}`;
+    displayPlayerTwoName.innerText = `${playerTwo.name}:`;
     displayPlayerTwoScore.innerText = `${playerTwo.score}`;
 }
 
@@ -207,7 +208,7 @@ function startGame() {
     appendCardsToBoard(gameBoard, randomizedCards);
     scoreBoardUpdater();
 }
-// function compare cards
+
 
 // eventlistener
 
@@ -223,4 +224,4 @@ restartGameBtn.addEventListener('click', () => {
     gameBoard.innerHTML = '';
     startGame();
 });
-// startGame();
+
