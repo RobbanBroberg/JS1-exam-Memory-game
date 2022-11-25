@@ -114,7 +114,10 @@ function handleCardClick(card) {
     let parent = card.target.parentNode;
     parent.classList.toggle('img-card-rotate');
     cardsClickedCounter = (cardsClickedCounter + 1) % 2;
-    storedCards.push(card.target.getAttribute('data-name'));
+    storedCards.push(card.target);
+    // if (cardsClickedCounter == 0) {
+    //     compareCards();
+    // }
     console.log(
       `storedCards: ${storedCards}, card conuter: ${cardsClickedCounter}`
     );
@@ -146,12 +149,9 @@ function createCard(card) {
     cardFront.classList.add('img-front');
 
     cardImg.append(cardBack, cardFront);
-
-    cardContainer.append(cardImg);
-
     // Add a listener to every card to be created
     cardContainer.addEventListener('click', handleCardClick);
-    
+
     return cardContainer;
 }
 
