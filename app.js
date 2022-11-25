@@ -182,8 +182,8 @@ function startGame() {
 startGameBtn.addEventListener('click', () => {
     playerOne.name = playerOneNameField.value;
     playerTwo.name = playerTwoNameField.value;
-    // playerRegistrationFields.setAttribute('style', 'display: none;');
-    // gameBodyContainer.setAttribute('style', 'display: block;');
+    playerRegistrationFields.setAttribute('style', 'display: none;');
+    gameBodyContainer.setAttribute('style', 'display: block;');
     startGame();
 });
 
