@@ -89,9 +89,16 @@ console.log(result);
 
 // function start game => add players, hide registration, show game body, run game,
 
-// function to compare the cards
 
-// functions to lock-cards, board and rotate non matching cards
+// display update
+function scoreBoardUpdater(){
+    let currentPlayer = players[gameTurn];
+    playerTurn.innerText = currentPlayer.name;
+
+    playerOneScore.innerText = `${players[0].name}: ${players[0].score}`;
+    playerTwoScore.innerText = `${players[1].name}: ${players[1].score}`;
+}
+
 
 function removeListenerFromMatchingCards(storedCards) {
     let cardOneParent = storedCards[0].target.parentNode;
