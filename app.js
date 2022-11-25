@@ -3,14 +3,21 @@
 // Variables including from DOM
 const gameBoard = document.querySelector('.game-board');
 
+const playerOneNameField = document.querySelector('#reg-player-one');
+const playerTwoNameField = document.querySelector('#reg-player-two');
+
+const startGameBtn = document.querySelector('.start-game-btn');
+const gameBodyContainer = document.querySelector('.game-body');
+
+const playerRegistrationFields = document.querySelector('.player-reg');
+
 let cardsClickedCounter = 0;
 const storedCards = []; // For storing which two cards is clicked for comparison
 
-let gameTurn = 0;
+const playerOne = { name: '', score: 0 }; // .name will take value of playerOneNameField when started thourgt startGameBtn
+const playerTwo = { name: '', score: 0 };
 
-
-
-// object containing players name, score & card names
+const players = [playerOne, playerTwo];
 
 const cardArray = [
     {
@@ -63,10 +70,7 @@ const cardArray = [
     },
 ];
 
-const players = [
-    { name: 'kalle', score: 0 }, // name from DOM via function start game
-    { name: 'pelle', score: 0 },
-];
+console.log(cardArray[2].title);
 
 //Array ranomdizer insp. https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Modern_method
 const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -85,46 +89,41 @@ console.log(result);
 
 // function start game => add players, hide registration, show game body, run game,
 
-
 // function to compare the cards
 
 // functions to lock-cards, board and rotate non matching cards
 
-function removeListenerFromMatchingCards(storedCards){
+function removeListenerFromMatchingCards(storedCards) {
+    let cardOneParent = storedCards[0].target.parentNode;
+    let cardTwoParent = storedCards[1].target.parentNode;
 
-  let cardOneParent = storedCards[0].target.parentNode;
-  let cardTwoParent = storedCards[1].target.parentNode;
-
-  cardOneParent.removeEventListener('click', handleCardClick);
-  cardTwoParent.removeEventListener('click', handleCardClick);
+    cardOneParent.removeEventListener('click', handleCardClick);
+    cardTwoParent.removeEventListener('click', handleCardClick);
 }
 
 function compareCards(storedCards) {
+    let cardOneValue = storedCards[0].target.getAttribute('data-name');
+    let cardTwoValue = storedCards[1].target.getAttribute('data-name');
 
-  let cardOneValue = storedCards[0].target.getAttribute('data-name');
-  let cardTwoValue = storedCards[1].target.getAttribute('data-name');
+    let parent1 = storedCards[0].target.parentNode;
+    let parent2 = storedCards[1].target.parentNode;
 
-  let parent1 = storedCards[0].target.parentNode;
-  let parent2 = storedCards[1].target.parentNode;
-  
-  if(cardOneValue == cardTwoValue){
-    //lock matching cards
-    removeListenerFromMatchingCards(storedCards);
-    //give points to the player::::
+    if (cardOneValue == cardTwoValue) {
+        //lock matching cards
+        removeListenerFromMatchingCards(storedCards);
+        //give points to the player::::
 
-    gameTurn = gameTurn; //current player plays again
-
-  }else{
-    // TODO: fix its own function
-    setTimeout(() => {
-      parent1.classList.remove('img-card-rotate');
-      parent2.classList.remove('img-card-rotate');}
-      ,1500);
-    gameTurn = (gameTurn + 1) % 2;
-  }
-  storedCards.splice(0, 2);
-};
-
+        gameTurn = gameTurn; //current player plays again
+    } else {
+        // TODO: fix its own function
+        setTimeout(() => {
+            parent1.classList.remove('img-card-rotate');
+            parent2.classList.remove('img-card-rotate');
+        }, 1500);
+        gameTurn = (gameTurn + 1) % 2;
+    }
+    storedCards.splice(0, 2);
+}
 
 // function Click card to flip
 function handleCardClick(card) {
@@ -132,12 +131,10 @@ function handleCardClick(card) {
     parent.classList.add('img-card-rotate');
     cardsClickedCounter = (cardsClickedCounter + 1) % 2;
     storedCards.push(card);
-    if(cardsClickedCounter == 0){
-      compareCards(storedCards);
+    if (cardsClickedCounter == 0) {
+        compareCards(storedCards);
     }
 }
-
-
 
 // function Create cards, creates HTML and adds card image and data-value for later compare
 function createCard(card) {
@@ -182,4 +179,12 @@ function startGame() {
 
 // eventlistener
 
-startGame();
+startGameBtn.addEventListener('click', () => {
+    playerOne.name = playerOneNameField.value;
+    playerTwo.name = playerTwoNameField.value;
+    // playerRegistrationFields.setAttribute('style', 'display: none;');
+    // gameBodyContainer.setAttribute('style', 'display: block;');
+    startGame();
+});
+
+// startGame();
