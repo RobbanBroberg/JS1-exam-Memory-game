@@ -27,10 +27,22 @@
     justify-content: space-around;
     /* gap: 0.5em; */
     position: relative;
+    box-shadow: inset 0 0 5px grey;
 }
 .score-container {
     background-color: var(--clr-neutral-200);
     width: 300px;
+    margin-right: 2.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.display {
+  background-color: white;
+  width: 80%;
+  height: 90%;
+  box-shadow: inset 0 0 5px grey;
+
 }
 .card-container {
     display: inline-block;
@@ -45,6 +57,7 @@
     width: 100%;
     height: 100%;
     border: 1px solid black;
+    box-shadow: 0 0 5px black;
     transform-style: preserve-3d;
     transition: all 0.5s ease;
 }

@@ -168,7 +168,7 @@ function createCard(card) {
 
 // function to add all cards to the game board
 
-function appendCardsToBoard(container, cardArray  ) {
+function appendCardsToBoard(container, cardArray) {
     for (let card of cardArray) {
         container.append(createCard(card));
     }
