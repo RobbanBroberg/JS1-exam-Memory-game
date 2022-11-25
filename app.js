@@ -12,7 +12,6 @@ const gameBodyContainer = document.querySelector('.game-body');
 const playerRegistrationFields = document.querySelector('.player-reg');
 
 let cardsClickedCounter = 0;
-
 const storedCards = []; // For storing which two cards is clicked for comparison
 
 const playerOne = { name: '', score: 0 }; // .name will take value of playerOneNameField when started thourgt startGameBtn
@@ -90,18 +89,51 @@ console.log(result);
 
 // function start game => add players, hide registration, show game body, run game,
 
+// function to compare the cards
+
+// functions to lock-cards, board and rotate non matching cards
+
+function removeListenerFromMatchingCards(storedCards) {
+    let cardOneParent = storedCards[0].target.parentNode;
+    let cardTwoParent = storedCards[1].target.parentNode;
+
+    cardOneParent.removeEventListener('click', handleCardClick);
+    cardTwoParent.removeEventListener('click', handleCardClick);
+}
+
+function compareCards(storedCards) {
+    let cardOneValue = storedCards[0].target.getAttribute('data-name');
+    let cardTwoValue = storedCards[1].target.getAttribute('data-name');
+
+    let parent1 = storedCards[0].target.parentNode;
+    let parent2 = storedCards[1].target.parentNode;
+
+    if (cardOneValue == cardTwoValue) {
+        //lock matching cards
+        removeListenerFromMatchingCards(storedCards);
+        //give points to the player::::
+
+        gameTurn = gameTurn; //current player plays again
+    } else {
+        // TODO: fix its own function
+        setTimeout(() => {
+            parent1.classList.remove('img-card-rotate');
+            parent2.classList.remove('img-card-rotate');
+        }, 1500);
+        gameTurn = (gameTurn + 1) % 2;
+    }
+    storedCards.splice(0, 2);
+}
+
 // function Click card to flip
 function handleCardClick(card) {
     let parent = card.target.parentNode;
-    parent.classList.toggle('img-card-rotate');
+    parent.classList.add('img-card-rotate');
     cardsClickedCounter = (cardsClickedCounter + 1) % 2;
-    storedCards.push(card.target);
-    // if (cardsClickedCounter == 0) {
-    //     compareCards();
-    // }
-    console.log(
-        `storedCards: ${storedCards}, card conuter: ${cardsClickedCounter}`
-    );
+    storedCards.push(card);
+    if (cardsClickedCounter == 0) {
+        compareCards(storedCards);
+    }
 }
 
 // function Create cards, creates HTML and adds card image and data-value for later compare
@@ -126,7 +158,6 @@ function createCard(card) {
     cardImg.append(cardBack, cardFront);
     // Add a listener to every card to be created
     cardImg.addEventListener('click', handleCardClick);
-
     cardContainer.append(cardImg);
 
     return cardContainer;
@@ -134,7 +165,7 @@ function createCard(card) {
 
 // function to add all cards to the game board
 
-function appendCardsToBoard(container) {
+function appendCardsToBoard(container, cardArray) {
     for (let card of cardArray) {
         container.append(createCard(card));
     }
@@ -142,7 +173,7 @@ function appendCardsToBoard(container) {
 
 function startGame() {
     cardsClickedCounter = 0;
-    appendCardsToBoard(gameBoard);
+    appendCardsToBoard(gameBoard, result);
 }
 // function compare cards
 
