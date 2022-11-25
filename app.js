@@ -10,6 +10,11 @@ const startGameBtn = document.querySelector('.start-game-btn');
 const restartGameBtn = document.querySelector('.restart-game-btn');
 const quitGameBtn = document.querySelector('.quit-to-menu-btn');
 const gameBodyContainer = document.querySelector('.game-body');
+const displayPlayerOneName = document.querySelector('player-one-name');
+const displayPlayerOneScore = document.querySelector('player-one-score');
+const displayPlayerTwoName = document.querySelector('player-two-name');
+const displayPlayerTwoScore = document.querySelector('player-two-score');
+const displayPlayersTurn = document.querySelector('current-player');
 
 const playerRegistrationFields = document.querySelector('.player-reg');
 
@@ -95,10 +100,12 @@ console.log(result);
 // display update
 function scoreBoardUpdater(){
     let currentPlayer = players[gameTurn];
-    playerTurn.innerText = currentPlayer.name;
+    displayPlayersTurn.innerText = `${currentPlayer}`;
 
-    playerOneScore.innerText = `${players[0].name}: ${players[0].score}`;
-    playerTwoScore.innerText = `${players[1].name}: ${players[1].score}`;
+    displayPlayerOneName.innerText = `${players[0].name}`;
+    displayPlayerOneScore.innerText = `${players[0].score}`;
+    displayPlayerTwoName.innerText = `${players[1].name}`;
+    displayPlayerTwoScore.innerText = `${players[1].score}`;
 }
 
 
@@ -111,12 +118,13 @@ function removeListenerFromMatchingCards(storedCards) {
 }
 
 function compareCards(storedCards) {
+
     let cardOneValue = storedCards[0].target.getAttribute('data-name');
     let cardTwoValue = storedCards[1].target.getAttribute('data-name');
 
     let parent1 = storedCards[0].target.parentNode;
     let parent2 = storedCards[1].target.parentNode;
-
+    
     if (cardOneValue == cardTwoValue) {
         //lock matching cards
         removeListenerFromMatchingCards(storedCards);
@@ -132,6 +140,7 @@ function compareCards(storedCards) {
         gameTurn = (gameTurn + 1) % 2;
     }
     storedCards.splice(0, 2);
+    scoreBoardUpdater();
 }
 
 // function Click card to flip
@@ -183,6 +192,7 @@ function appendCardsToBoard(container, cardArray) {
 function startGame() {
     cardsClickedCounter = 0;
     appendCardsToBoard(gameBoard, result);
+    scoreBoardUpdater();
 }
 // function compare cards
 
