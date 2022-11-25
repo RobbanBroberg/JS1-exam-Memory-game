@@ -77,31 +77,31 @@ console.log(cardArray[2].title);
 
 //Array ranomdizer insp. https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Modern_method
 // const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-// const result = [];
+// ;
 
 // console.log(`n = ${n}`);
 function randomizeArray(array) {
+    const result = [];
     for (i = array.length; i >= 1; i--) {
         let randomIndex = Math.floor(Math.random() * i);
         result.unshift(array[randomIndex]);
         array.splice(randomIndex, 1);
     }
+    return result;
 }
 // randomizeArray(cardArray.concat(cardArray));
 // console.log(result);
 
 // function start game => add players, hide registration, show game body, run game,
 
-
 // display update
-function scoreBoardUpdater(){
+function scoreBoardUpdater() {
     let currentPlayer = players[gameTurn];
     playerTurn.innerText = currentPlayer.name;
 
     playerOneScore.innerText = `${players[0].name}: ${players[0].score}`;
     playerTwoScore.innerText = `${players[1].name}: ${players[1].score}`;
 }
-
 
 function removeListenerFromMatchingCards(storedCards) {
     let cardOneParent = storedCards[0].target.parentNode;
@@ -195,7 +195,8 @@ function startGame() {
     gameTurn = 0;
     cardsClickedCounter = 0;
     let dubbleCards = cardArray.concat(cardArray);
-    appendCardsToBoard(gameBoard, dubbleCards);
+    let randomizedCards = randomizeArray(dubbleCards);
+    appendCardsToBoard(gameBoard, randomizedCards);
 }
 // function compare cards
 
