@@ -19,6 +19,7 @@ const displayPlayersTurn = document.querySelector('current-player');
 const playerRegistrationFields = document.querySelector('.player-reg');
 
 let cardsClickedCounter = 0;
+let gameTurn = 0;
 const storedCards = []; // For storing which two cards is clicked for comparison
 
 const playerOne = { name: '', score: 0 }; // .name will take value of playerOneNameField when started thourgt startGameBtn
@@ -80,8 +81,8 @@ const cardArray = [
 console.log(cardArray[2].title);
 
 //Array ranomdizer insp. https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Modern_method
-const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-const result = [];
+// const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+// const result = [];
 
 // console.log(`n = ${n}`);
 function randomizeArray(array) {
@@ -91,8 +92,8 @@ function randomizeArray(array) {
         array.splice(randomIndex, 1);
     }
 }
-randomizeArray(cardArray.concat(cardArray));
-console.log(result);
+// randomizeArray(cardArray.concat(cardArray));
+// console.log(result);
 
 // function start game => add players, hide registration, show game body, run game,
 
@@ -117,14 +118,26 @@ function removeListenerFromMatchingCards(storedCards) {
     cardTwoParent.removeEventListener('click', handleCardClick);
 }
 
+function returnNonMatchingCardsFaceDown(storedCards) {
+    console.log(storedCards[0].target.parentNode);
+    console.log(storedCards[1].target.parentNode);
+    let cardOneParent = storedCards[0].target.parentNode;
+    let cardTwoParent = storedCards[1].target.parentNode;
+
+    setTimeout(() => {
+        cardOneParent.classList.remove('img-card-rotate');
+        cardTwoParent.classList.remove('img-card-rotate');
+    }, 1500);
+}
+
 function compareCards(storedCards) {
 
     let cardOneValue = storedCards[0].target.getAttribute('data-name');
     let cardTwoValue = storedCards[1].target.getAttribute('data-name');
 
-    let parent1 = storedCards[0].target.parentNode;
-    let parent2 = storedCards[1].target.parentNode;
-    
+    // let parent1 = storedCards[0].target.parentNode;
+    // let parent2 = storedCards[1].target.parentNode;
+
     if (cardOneValue == cardTwoValue) {
         //lock matching cards
         removeListenerFromMatchingCards(storedCards);
@@ -132,11 +145,8 @@ function compareCards(storedCards) {
 
         gameTurn = gameTurn; //current player plays again
     } else {
-        // TODO: fix its own function
-        setTimeout(() => {
-            parent1.classList.remove('img-card-rotate');
-            parent2.classList.remove('img-card-rotate');
-        }, 1500);
+        // Turn over non matching cards
+        returnNonMatchingCardsFaceDown(storedCards);
         gameTurn = (gameTurn + 1) % 2;
     }
     storedCards.splice(0, 2);
@@ -190,9 +200,9 @@ function appendCardsToBoard(container, cardArray) {
 }
 
 function startGame() {
+    gameTurn = 0;
     cardsClickedCounter = 0;
     appendCardsToBoard(gameBoard, result);
-    scoreBoardUpdater();
 }
 // function compare cards
 
