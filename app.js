@@ -10,11 +10,11 @@ const startGameBtn = document.querySelector('.start-game-btn');
 const restartGameBtn = document.querySelector('.restart-game-btn');
 const quitGameBtn = document.querySelector('.quit-to-menu-btn');
 const gameBodyContainer = document.querySelector('.game-body');
-const displayPlayerOneName = document.querySelector('player-one-name');
-const displayPlayerOneScore = document.querySelector('player-one-score');
-const displayPlayerTwoName = document.querySelector('player-two-name');
-const displayPlayerTwoScore = document.querySelector('player-two-score');
-const displayPlayersTurn = document.querySelector('current-player');
+const displayPlayerOneName = document.querySelector('.player-one-name');
+const displayPlayerOneScore = document.querySelector('.player-one-score');
+const displayPlayerTwoName = document.querySelector('.player-two-name');
+const displayPlayerTwoScore = document.querySelector('.player-two-score');
+const displayCurrentPlayer = document.querySelector('.current-player');
 
 const playerRegistrationFields = document.querySelector('.player-reg');
 
@@ -82,33 +82,33 @@ console.log(cardArray[2].title);
 
 //Array ranomdizer insp. https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Modern_method
 // const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-// const result = [];
+// ;
 
 // console.log(`n = ${n}`);
 function randomizeArray(array) {
+    const result = [];
     for (i = array.length; i >= 1; i--) {
         let randomIndex = Math.floor(Math.random() * i);
         result.unshift(array[randomIndex]);
         array.splice(randomIndex, 1);
     }
+    return result;
 }
 // randomizeArray(cardArray.concat(cardArray));
 // console.log(result);
 
 // function start game => add players, hide registration, show game body, run game,
 
-
 // display update
-function scoreBoardUpdater(){
-    let currentPlayer = players[gameTurn];
-    displayPlayersTurn.innerText = `${currentPlayer}`;
-
-    displayPlayerOneName.innerText = `${players[0].name}`;
-    displayPlayerOneScore.innerText = `${players[0].score}`;
-    displayPlayerTwoName.innerText = `${players[1].name}`;
-    displayPlayerTwoScore.innerText = `${players[1].score}`;
+function scoreBoardUpdater() {
+    let currentPlayer = players[gameTurn].name;
+    displayCurrentPlayer.innerText = `${currentPlayer}`;
+    
+    displayPlayerOneName.innerText = `${playerOne.name}`;
+    displayPlayerOneScore.innerText = `${playerOne.score}`;
+    displayPlayerTwoName.innerText = `${playerTwo.name}`;
+    displayPlayerTwoScore.innerText = `${playerTwo.score}`;
 }
-
 
 function removeListenerFromMatchingCards(storedCards) {
     let cardOneParent = storedCards[0].target.parentNode;
@@ -142,7 +142,7 @@ function compareCards(storedCards) {
         //lock matching cards
         removeListenerFromMatchingCards(storedCards);
         //give points to the player::::
-
+        players[gameTurn].score += 1;
         gameTurn = gameTurn; //current player plays again
     } else {
         // Turn over non matching cards
@@ -202,7 +202,10 @@ function appendCardsToBoard(container, cardArray) {
 function startGame() {
     gameTurn = 0;
     cardsClickedCounter = 0;
-    appendCardsToBoard(gameBoard, result);
+    let dubbleCards = cardArray.concat(cardArray);
+    let randomizedCards = randomizeArray(dubbleCards);
+    appendCardsToBoard(gameBoard, randomizedCards);
+    scoreBoardUpdater();
 }
 // function compare cards
 
