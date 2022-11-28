@@ -149,10 +149,10 @@ difficultyEasyBtn.addEventListener('click', () => {
   difficultyContainer.setAttribute('style', 'display: none;');
   gameBodyContainer.setAttribute('style', 'display: flex;');
   interval = setInterval(timeLeft, 1000);
-  startTimeTrialGame();
+  startGame();
 });
 
 restartGameBtn.addEventListener('click', () => {
   gameBoard.innerHTML = '';
-  startTimeTrialGame();
+  startGame();
 });
