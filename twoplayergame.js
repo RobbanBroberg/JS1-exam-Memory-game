@@ -1,3 +1,5 @@
+// Variables including from DOM
+
 const playerOneNameField = document.querySelector('#reg-player-one');
 const playerTwoNameField = document.querySelector('#reg-player-two');
 
@@ -28,26 +30,22 @@ function updateTwoPlayerScoreBoard() {
     displayPlayerTwoScore.innerText = `${playerTwo.score}`;
 }
 
-function compareCards(storedCards) {
-    let cardOneValue = storedCards[0].target.getAttribute('data-name');
-    let cardTwoValue = storedCards[1].target.getAttribute('data-name');
-
-    // let parent1 = storedCards[0].target.parentNode;
-    // let parent2 = storedCards[1].target.parentNode;
-
-    if (cardOneValue == cardTwoValue) {
-        //lock matching cards
-        removeListenerFromMatchingCards(storedCards);
+function scoreTwoPlayer(match) {
+    if (match == true) {
         //give points to the player::::
         players[gameTurn].score += 1;
+
+        updateGameHistory(storedCards, players[gameTurn].name);
+
         gameTurn = gameTurn; //current player plays again
+
+        updateTwoPlayerScoreBoard();
     } else {
-        // Turn over non matching cards
-        returnNonMatchingCardsFaceDown(storedCards);
-        gameTurn = (gameTurn + 1) % 2;
+        setTimeout(() => {
+            gameTurn = (gameTurn + 1) % 2;
+            updateTwoPlayerScoreBoard();
+        }, 1000);
     }
-    storedCards.splice(0, 2);
-    updateTwoPlayerScoreBoard();
 }
 
 startTwoPlayerGameBtn.addEventListener('click', () => {
@@ -56,6 +54,7 @@ startTwoPlayerGameBtn.addEventListener('click', () => {
     playerRegistrationFields.setAttribute('style', 'display: none;');
     gameBodyContainer.setAttribute('style', 'display: flex;');
     twoPlayerScoreBoard.setAttribute('style', 'display: block;');
+    gameMode = 'twoplayer';
     startTwoPlayerGame();
 });
 
@@ -72,5 +71,6 @@ function startTwoPlayerGame() {
 
 restartGameBtn.addEventListener('click', () => {
     gameBoard.innerHTML = '';
+    gameHistoryList.innerHTML = '';
     startTwoPlayerGame();
 });
