@@ -28,7 +28,7 @@
             <script src="app.js" defer="defer"></script>
             <script src="twoplayergame.js" defer="defer"></script>
             <script src="timetrialgame.js" defer="defer"></script>
-            <script src="startmenu.js"></script>
+            <script src="startmenu.js" defer></script>
 
             <!-- TODO: Check script src -->
 
@@ -36,15 +36,19 @@
         </head>
         <body>
             <main>
-                <h1 class="page-title">Memory</h1>
+                <h1 class="page-title">
+                    <span class="bond-font">k </span>Memory
+                    <span class="bond-font"> 7</span>
+                </h1>
                 <!-- <p class="page-subtitle">JavaScript1 Examination Exercise</p> -->
                 <div class="start-menu">
                     <div class="menu-container">
                         <div class="welcome-phrase">
                             <h2 class="welcome-heading">
-                                <span class="bond-font">+</span>Welcome<span
+                                <span class="bond-font">+ </span>Welcome<span
                                     class="bond-font"
-                                    >=</span
+                                >
+                                    =</span
                                 >
                             </h2>
                             <p class="welcome-para">Choose a game:</p>
@@ -125,6 +129,7 @@
                         </div>
                         <div class="history">
                             <p class="history-title">Game recap:</p>
+                            <ul class="history-list"></ul>
                         </div>
                         <div class="game-btns">
                             <button class="restart-game-btn">

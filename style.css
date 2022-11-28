@@ -17,8 +17,8 @@
 /* general */
 
 @font-face {
-  font-family: 'babesandbond';
-  src: url('./fonts/babesandbond.ttf');
+    font-family: 'babesandbond';
+    src: url('./fonts/babesandbond.ttf');
 }
 
 body {
@@ -28,9 +28,11 @@ body {
 .page-title {
     text-align: center;
     font-family: var(--ff-title);
+    font-size: 3rem;
+    font-weight: 200;
 }
-.bond-font{
-  font-family: babesandbond;
+.bond-font {
+    font-family: babesandbond;
 }
 /* Game options menu */
 
@@ -105,7 +107,8 @@ body {
 }
 .difficulty-easy-btn,
 .difficulty-medium-btn,
-.difficulty-hard-btn {
+.difficulty-hard-btn,
+.start-game-btn {
     width: 60%;
     padding: 1em;
     background-color: gold;
@@ -151,6 +154,10 @@ body {
 }
 .img-card-rotate {
     transform: rotateY(180deg);
+}
+
+.img-card-lower-opacity {
+    opacity: 0.5;
 }
 
 .img-back {
@@ -234,4 +241,8 @@ body {
     border-bottom: 6px double grey;
     font-size: 1.2rem;
     font-weight: 700;
+}
+
+li img {
+    max-width: 40px;
 }
