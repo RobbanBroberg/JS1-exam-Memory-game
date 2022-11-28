@@ -79,7 +79,6 @@ const cardArray = [
     },
 ];
 
-console.log(cardArray[2].title);
 
 //Array ranomdizer insp. https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Modern_method
 // const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -120,8 +119,6 @@ function removeListenerFromMatchingCards(storedCards) {
 }
 
 function returnNonMatchingCardsFaceDown(storedCards) {
-    console.log(storedCards[0].target.parentNode);
-    console.log(storedCards[1].target.parentNode);
     let cardOneParent = storedCards[0].target.parentNode;
     let cardTwoParent = storedCards[1].target.parentNode;
 
@@ -200,7 +197,7 @@ function appendCardsToBoard(container, cardArray) {
     }
 }
 
-function startGame() {
+function startTwoPlayerGame() {
     gameTurn = 0;
     cardsClickedCounter = 0;
     let dubbleCards = cardArray.concat(cardArray);
@@ -217,11 +214,11 @@ startGameBtn.addEventListener('click', () => {
     playerTwo.name = playerTwoNameField.value;
     playerRegistrationFields.setAttribute('style', 'display: none;');
     gameBodyContainer.setAttribute('style', 'display: flex;');
-    startGame();
+    startTwoPlayerGame();
 });
 
 restartGameBtn.addEventListener('click', () => {
     gameBoard.innerHTML = '';
-    startGame();
+    startTwoPlayerGame();
 });
 

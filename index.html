@@ -1,71 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
-    <!-- TODO: Check lang attribute -->
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-            name="description"
-            content="Memory Game for the course JavaScript part 1 Examination Exercise"
-        />
-        <!-- TODO: Change page description -->
-        <meta
-            name="keywords"
-            content="Memory Game JavaScript Examination Exercise"
-        />
-        <!-- TODO: Change page keywords -->
+<DOCTYPE html>
+    <html lang="en">
+        <!-- TODO: Check lang attribute -->
+        <head>
+            <meta charset="UTF-8" />
+            <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+            <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1.0"
+            />
+            <meta
+                name="description"
+                content="Memory Game for the course JavaScript part 1 Examination Exercise"
+            />
+            <!-- TODO: Change page description -->
+            <meta
+                name="keywords"
+                content="Memory Game JavaScript Examination Exercise"
+            />
+            <!-- TODO: Change page keywords -->
 
-        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" referrerpolicy="no-referrer"> -->
-        <!-- Meyer reset -->
+            <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" referrerpolicy="no-referrer"> -->
+            <!-- Meyer reset -->
 
-        <link rel="stylesheet" href="style.css" />
-        <!-- TODO: Check CSS link -->
+            <link rel="stylesheet" href="style.css" />
+            <!-- TODO: Check CSS link -->
 
-        <script src="app.js" defer="defer"></script>
-        <!-- TODO: Check script src -->
+            <script src="twoplayergame.js" defer="defer"></script>
+            <script src="timetrialgame.js" defer="defer"></script>
+            <script src="startmenu.js" defer="defer"></script>
 
-        <title>Memory game, JavaScript1 Examination exercise</title>
-    </head>
-    <body>
-        <main>
-            <h1 class="page-title">Memory</h1>
-            <!-- <p class="page-subtitle">JavaScript1 Examination Exercise</p> -->
-            <div class="player-reg">
-                <label for="reg-player-one">Enter first player</label>
-                <input type="text" id="reg-player-one" />
-                <label for="reg-player-two">Enter second player</label>
-                <input type="text" id="reg-player-two" />
-                <button class="start-game-btn">Start game</button>
-            </div>
-            <div class="game-body">
-                <div class="game-board"></div>
-                <div class="score-container">
-                    <p class="turn-display">
-                        It's <span class="current-player"></span>'s turn
-                    </p>
-                    <div class="score-board">
-                        <div>
-                            <p class="score-title">Players score:</p>
+            <!-- TODO: Check script src -->
+
+            <title>Memory game, JavaScript1 Examination exercise</title>
+        </head>
+        <body>
+            <main>
+                <h1 class="page-title">Memory</h1>
+                <!-- <p class="page-subtitle">JavaScript1 Examination Exercise</p> -->
+                <div class="start-menu">
+                    <div class="menu-container">
+                        <div class="welcome-phrase">
+                            <h2 class="welcome-heading">Welcome!</h2>
+                            <p class="welcome-para">Choose a game:</p>
                         </div>
-                        <div>
-                            <p class="player-one-name">placeholder</p>
-                            <p class="player-one-score">2</p>
+                        <div class="menu-buttons">
+                            <button class="two-players_menu-btn">
+                                LOCAL TWO PLAYER GAME
+                            </button>
+                            <button class="time-trial_menu-btn">
+                                TIME TRIAL
+                            </button>
                         </div>
-                        <div>
-                            <p class="player-two-name">placeholder</p>
-                            <p class="player-two-score">6</p>
-                        </div>
-                    </div>
-                    <div class="history">
-                        <p class="history-title">Game recap:</p>
-                    </div>
-                    <div class="game-btns">
-                        <button class="restart-game-btn">Restart Game</button>
-                        <button class="quit-to-menu-btn">Quit to menu</button>
                     </div>
                 </div>
-            </div>
-        </main>
-    </body>
-</html>
+                <div class="player-reg">
+                    <label for="reg-player-one">Enter first player</label>
+                    <input type="text" id="reg-player-one" />
+                    <label for="reg-player-two">Enter second player</label>
+                    <input type="text" id="reg-player-two" />
+                    <button class="start-game-btn">Start game</button>
+                </div>
+                <div class="difficulty_container">
+                    <div class="difficulty_menu">
+                        <h2 class="difficulty_header">
+                            Choose your level of despair
+                        </h2>
+                        <button class="difficulty-easy">
+                            -I'm too young to die-
+                        </button>
+                        <button class="difficulty-medium">
+                            -Hurt me plenty-
+                        </button>
+                        <button class="difficulty-hard">
+                            -Emotional damage-
+                        </button>
+                    </div>
+                </div>
+                <div class="game-body">
+                    <div class="game-board"></div>
+                    <div class="score-container">
+                        <p class="turn-display">
+                            It's <span class="current-player"></span>'s turn
+                        </p>
+                        <div class="score-board">
+                            <div>
+                                <p class="score-title">Players score:</p>
+                            </div>
+                            <div>
+                                <p class="player-one-name">placeholder</p>
+                                <p class="player-one-score">2</p>
+                            </div>
+                            <div>
+                                <p class="player-two-name">placeholder</p>
+                                <p class="player-two-score">6</p>
+                            </div>
+                        </div>
+                        <div class="history">
+                            <p class="history-title">Game recap:</p>
+                        </div>
+                        <div class="game-btns">
+                            <button class="restart-game-btn">
+                                Restart Game
+                            </button>
+                            <button class="quit-to-menu-btn">
+                                Quit to menu
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </body>
+    </html>
+</DOCTYPE>
