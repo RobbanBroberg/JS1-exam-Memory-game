@@ -25,10 +25,27 @@ function timeLeft() {
         seconds = 59;
     }
 }
+x;
+
+let minute = 0;
+let second = 0;
+let timerId;
+function timer() {
+    second++;
+    if (second == 60) {
+        minute++;
+        second = 0;
+    }
+    timeDisplay.innerText = `${minute}:${second}`;
+
+    if (minute == 10) {
+        clearInterval(timerId);
+    }
+}
 
 // display update
 function updateTimeTrialScoreBoard() {
-    timeDisplay.innerText = `${timer}`;
+    // timeDisplay.innerText = `${timer}`;
     displayPlayerScore.innerText = playerScore;
 }
 
@@ -47,6 +64,7 @@ function startTimeTrialGame() {
     let randomizedCards = randomizeArray(dubbleCards);
     appendCardsToBoard(gameBoard, randomizedCards, 'single');
     updateTimeTrialScoreBoard();
+    timerId = setInterval(timer, 1000);
 }
 
 // eventlistener
