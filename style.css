@@ -24,7 +24,7 @@
   src: url('./fonts/Bond.ttf');
 
   font-family: 'goldeneye';
-  src: url('./fonts/007\ GoldenEye.ttf');
+  src: url('./fonts/GoldenEye.ttf')
 }
 
 body {
