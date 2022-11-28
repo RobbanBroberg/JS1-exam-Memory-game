@@ -25,7 +25,7 @@
             <link rel="stylesheet" href="style.css" />
             <!-- TODO: Check CSS link -->
 
-            <script src="startmenu.js" defer="defer"></script>
+            <script src="app.js" defer="defer"></script>
             <script src="twoplayergame.js" defer="defer"></script>
             <script src="timetrialgame.js" defer="defer"></script>
 
@@ -65,13 +65,13 @@
                         <h2 class="difficulty_header">
                             Choose your level of despair
                         </h2>
-                        <button class="difficulty-easy">
+                        <button class="difficulty-easy-btn">
                             -I'm too young to die-
                         </button>
-                        <button class="difficulty-medium">
+                        <button class="difficulty-medium-btn">
                             -Hurt me plenty-
                         </button>
-                        <button class="difficulty-hard">
+                        <button class="difficulty-hard-btn">
                             -Emotional damage-
                         </button>
                     </div>
@@ -79,20 +79,42 @@
                 <div class="game-body">
                     <div class="game-board"></div>
                     <div class="score-container">
-                        <p class="turn-display">
-                            It's <span class="current-player"></span>'s turn
-                        </p>
-                        <div class="score-board">
-                            <div>
-                                <p class="score-title">Players score:</p>
+                        <div class="two-player">
+                            <p class="turn-display">
+                                It's <span class="current-player"></span>'s turn
+                            </p>
+                            <div class="score-board-two">
+                                <div>
+                                    <p class="score-title">Players score:</p>
+                                </div>
+                                <div class="grid-container">
+                                    <div class="right-border">
+                                        <p class="player-one-name">
+                                            placeholder
+                                        </p>
+                                        <p class="player-one-score">2</p>
+                                    </div>
+                                    <div>
+                                        <p class="player-two-name">
+                                            placeholder
+                                        </p>
+                                        <p class="player-two-score">6</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <p class="player-one-name">placeholder</p>
-                                <p class="player-one-score">2</p>
-                            </div>
-                            <div>
-                                <p class="player-two-name">placeholder</p>
-                                <p class="player-two-score">6</p>
+                        </div>
+                        <div class="timetrial">
+                            <p class="time-display">
+                                Time left: <span class="current-time"></span>
+                            </p>
+                            <div class="score-board-time">
+                                <div>
+                                    <p class="score-title">Player score:</p>
+                                </div>
+                                <div>
+                                    <p class="player-name">Matched pairs</p>
+                                    <p class="player-score">2</p>
+                                </div>
                             </div>
                         </div>
                         <div class="history">
