@@ -170,30 +170,50 @@ body {
   justify-content: center;
   align-items: center; */
 }
+
+.two-player,
+.timetrial {
+    display: none;
+}
 .player-reg,
 .turn-display,
-.score-board,
+.time-display,
+.score-board-two,
+.score-board-time,
 .history {
     background-color: white;
     padding: 0.5em;
     margin-bottom: 1rem;
     box-shadow: inset 0 0 5px grey;
 }
-.turn-display {
+.turn-display,
+.time-display {
     text-align: center;
     font-size: 1.5rem;
     font-weight: 700;
 }
-.score-board div {
+.score-board-two div {
     text-align: center;
 }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.right-border {
+    border-right: 3px double black;
+}
+
 .player-one-name,
-.player-two-name {
+.player-two-name,
+.player-name {
     font-size: 1.4rem;
     margin-bottom: -0.5em;
 }
 .player-one-score,
-.player-two-score {
+.player-two-score,
+.player-score {
     font-weight: 900;
     font-size: 1.5rem;
 }

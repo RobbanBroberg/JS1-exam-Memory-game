@@ -3,30 +3,13 @@
 // Variables including from DOM
 const gameBoard = document.querySelector('.game-board');
 
-const playerOneNameField = document.querySelector('#reg-player-one');
-const playerTwoNameField = document.querySelector('#reg-player-two');
-
-const startGameBtn = document.querySelector('.start-game-btn');
 const restartGameBtn = document.querySelector('.restart-game-btn');
 const quitGameBtn = document.querySelector('.quit-to-menu-btn');
 const gameBodyContainer = document.querySelector('.game-body');
 
-const displayPlayerOneName = document.querySelector('.player-one-name');
-const displayPlayerOneScore = document.querySelector('.player-one-score');
-const displayPlayerTwoName = document.querySelector('.player-two-name');
-const displayPlayerTwoScore = document.querySelector('.player-two-score');
-const displayCurrentPlayer = document.querySelector('.current-player');
-
-const playerRegistrationFields = document.querySelector('.player-reg');
-
 let cardsClickedCounter = 0;
 let gameTurn = 0;
 const storedCards = []; // For storing which two cards is clicked for comparison
-
-const playerOne = { name: '', score: 0 }; // .name will take value of playerOneNameField when started thourgt startGameBtn
-const playerTwo = { name: '', score: 0 };
-
-const players = [playerOne, playerTwo];
 
 const cardArray = [
     {
@@ -79,12 +62,8 @@ const cardArray = [
     },
 ];
 
-
 //Array ranomdizer insp. https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Modern_method
-// const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-// ;
 
-// console.log(`n = ${n}`);
 function randomizeArray(array) {
     const result = [];
     for (i = array.length; i >= 1; i--) {
@@ -94,21 +73,10 @@ function randomizeArray(array) {
     }
     return result;
 }
-// randomizeArray(cardArray.concat(cardArray));
-// console.log(result);
 
 // function start game => add players, hide registration, show game body, run game,
 
 // display update
-function scoreBoardUpdater() {
-    let currentPlayer = players[gameTurn].name;
-    displayCurrentPlayer.innerText = `${currentPlayer}`;
-    
-    displayPlayerOneName.innerText = `${playerOne.name}:`;
-    displayPlayerOneScore.innerText = `${playerOne.score}`;
-    displayPlayerTwoName.innerText = `${playerTwo.name}:`;
-    displayPlayerTwoScore.innerText = `${playerTwo.score}`;
-}
 
 function removeListenerFromMatchingCards(storedCards) {
     let cardOneParent = storedCards[0].target.parentNode;
@@ -128,37 +96,18 @@ function returnNonMatchingCardsFaceDown(storedCards) {
     }, 1500);
 }
 
-function compareCards(storedCards) {
-
-    let cardOneValue = storedCards[0].target.getAttribute('data-name');
-    let cardTwoValue = storedCards[1].target.getAttribute('data-name');
-
-    // let parent1 = storedCards[0].target.parentNode;
-    // let parent2 = storedCards[1].target.parentNode;
-
-    if (cardOneValue == cardTwoValue) {
-        //lock matching cards
-        removeListenerFromMatchingCards(storedCards);
-        //give points to the player::::
-        players[gameTurn].score += 1;
-        gameTurn = gameTurn; //current player plays again
-    } else {
-        // Turn over non matching cards
-        returnNonMatchingCardsFaceDown(storedCards);
-        gameTurn = (gameTurn + 1) % 2;
-    }
-    storedCards.splice(0, 2);
-    scoreBoardUpdater();
-}
-
 // function Click card to flip
-function handleCardClick(card) {
+function handleCardClick(card, gameType) {
     let parent = card.target.parentNode;
     parent.classList.add('img-card-rotate');
     cardsClickedCounter = (cardsClickedCounter + 1) % 2;
     storedCards.push(card);
     if (cardsClickedCounter == 0) {
-        compareCards(storedCards);
+        if (gameType == 'single') {
+            compareCardsTimeTrial(storedCards);
+        } else {
+            compareCards(storedCards);
+        }
     }
 }
 
@@ -184,6 +133,7 @@ function createCard(card) {
     cardImg.append(cardBack, cardFront);
     // Add a listener to every card to be created
     cardImg.addEventListener('click', handleCardClick);
+
     cardContainer.append(cardImg);
 
     return cardContainer;
@@ -191,34 +141,8 @@ function createCard(card) {
 
 // function to add all cards to the game board
 
-function appendCardsToBoard(container, cardArray) {
+function appendCardsToBoard(container, cardArray, gameType) {
     for (let card of cardArray) {
-        container.append(createCard(card));
+        container.append(createCard(card, gameType));
     }
 }
-
-function startTwoPlayerGame() {
-    gameTurn = 0;
-    cardsClickedCounter = 0;
-    let dubbleCards = cardArray.concat(cardArray);
-    let randomizedCards = randomizeArray(dubbleCards);
-    appendCardsToBoard(gameBoard, randomizedCards);
-    scoreBoardUpdater();
-}
-
-
-// eventlistener
-
-startGameBtn.addEventListener('click', () => {
-    playerOne.name = playerOneNameField.value;
-    playerTwo.name = playerTwoNameField.value;
-    playerRegistrationFields.setAttribute('style', 'display: none;');
-    gameBodyContainer.setAttribute('style', 'display: flex;');
-    startTwoPlayerGame();
-});
-
-restartGameBtn.addEventListener('click', () => {
-    gameBoard.innerHTML = '';
-    startTwoPlayerGame();
-});
-
