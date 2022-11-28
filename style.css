@@ -19,6 +19,12 @@
 @font-face {
     font-family: 'babesandbond';
     src: url('./fonts/babesandbond.ttf');
+
+  font-family: 'bond';
+  src: url('./fonts/Bond.ttf');
+
+  font-family: 'goldeneye';
+  src: url('./fonts/GoldenEye.ttf')
 }
 
 body {
@@ -225,7 +231,11 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-
+.flex-container {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
 .right-border {
     border-right: 3px double black;
 }
