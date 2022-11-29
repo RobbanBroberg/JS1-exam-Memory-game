@@ -10,6 +10,11 @@ const gameBodyContainer = document.querySelector('.game-body');
 
 const gameHistoryList = document.querySelector('.history-list');
 
+const gameEndMsg = document.querySelector('.game-end-msg');
+const endMsg = document.querySelector('.end-msg');
+const twoPlayerScores = document.querySelector('.score-board-two');
+const timePlayerScore = document.querySelector('.score-board-time');
+
 let cardsClickedCounter = 0;
 let gameTurn = 0;
 
@@ -17,7 +22,7 @@ let gameMode;
 let isAMatch;
 
 let gameHistory;
-let cardPairsFound;
+let cardPairsToFind = 12; // Deafult 12 pairs
 
 const storedCards = []; // For storing which two cards is clicked for comparison
 
@@ -49,7 +54,7 @@ function updateGameHistory(storedCards, player) {
     historyItem.append(cardImg);
 
     console.log(historyItem);
-    gameHistoryList.append(historyItem);
+    gameHistoryList.insertAdjacentElement('afterbegin', historyItem);
 }
 
 function compareCards(storedCards) {
@@ -91,6 +96,25 @@ function handleNonMatchingCards(storedCards) {
     }, 1000);
 }
 
+function handleTwoPlayerEndMsg() {
+    gameEndMsg.setAttribute('style', 'display: flex;');
+    endMsg.append(twoPlayerScores.cloneNode(true));
+    let winnerMsg = document.createElement('p');
+    winnerMsg.classList.add('winner-msg');
+    winnerMsg.innerText = determinWinner();
+    endMsg.append(winnerMsg);
+}
+
+function handleTimeTrialEndMsg() {
+    gameEndMsg.setAttribute('style', 'display: flex;');
+    endMsg.append(timePlayerScore.cloneNode(true));
+    let winnerMsg = document.createElement('p');
+    winnerMsg.classList.add('winner-msg');
+    let time = calculateCompletedInTime();
+    winnerMsg.innerText = `You found all pairs in ${time}`;
+    endMsg.append(winnerMsg);
+}
+
 function handleGameControls(mode, match) {
     if (mode == 'single') {
         scoreTimeTrial(match);
@@ -100,9 +124,17 @@ function handleGameControls(mode, match) {
 
     if (match == true) {
         handleMatchingCards(storedCards);
-        cardPairsFound += 1;
+        cardPairsToFind -= 1;
     } else {
         handleNonMatchingCards(storedCards);
+    }
+
+    if (cardPairsToFind == 0) {
+        if (mode == 'single') {
+            handleTimeTrialEndMsg();
+        } else {
+            handleTwoPlayerEndMsg();
+        }
     }
     storedCards.splice(0, 2);
 }
