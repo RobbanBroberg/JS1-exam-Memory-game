@@ -39,10 +39,9 @@ body {
     font-size: 3rem;
     font-weight: 200;
 }
-.bond-font{
+.bond-font {
     font-family: babesandbond;
 }
-
 
 /* Game options menu */
 .start-menu {
@@ -104,7 +103,6 @@ body {
     border: 1px solid red;
 }
 
-
 /* time trial */
 .difficulty_container {
     display: none;
@@ -139,7 +137,7 @@ body {
 
 /* Game */
 .game-body {
-    width: 1300px;
+    width: 1350px;
     display: none;
     justify-content: center;
     margin: 2em auto;
@@ -147,11 +145,12 @@ body {
 }
 .game-board {
     background-color: var(--clr-neutral-200);
-    width: 900px;
+    width: 950px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
     /* gap: 0.5em; */
+    align-content: space-around;
     position: relative;
     box-shadow: inset 0 0 5px grey;
 }
@@ -181,6 +180,8 @@ body {
 }
 
 .img-back {
+    width: 100%;
+    height: 100%;
     position: absolute;
     backface-visibility: hidden;
 }
@@ -256,7 +257,8 @@ body {
     font-size: 1.5rem;
 }
 .history {
-    height: 450px;
+    min-height: 300px;
+    /* max-height: 450px; */
     overflow-y: scroll;
 }
 .score-title,
