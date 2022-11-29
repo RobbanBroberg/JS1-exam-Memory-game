@@ -11,6 +11,8 @@ const difficultyHardBtn = document.querySelector('.difficulty-hard-btn');
 
 const timeDisplay = document.querySelector('.time-display');
 
+const gameEndMsg = document.querySelector('.game-end-msg');
+
 // To store player points
 let playerScore = 0;
 
@@ -39,8 +41,11 @@ function timer() {
     }
     let secondsDisplayed = second < 10 ? `0${second}` : second;
     timeDisplay.innerText = `Time left: ${minute}:${secondsDisplayed}`;
-    if ((minute == 0 && second == 0) || playerScore == maxPoints) {
+    if (playerScore == maxPoints) {
         clearInterval(timerId);
+    } else if (minute == 0 && second == 0) {
+        clearInterval(timerId);
+        gameEndMsg.setAttribute('style', 'display: flex;');
     }
 }
 
@@ -57,7 +62,16 @@ function scoreTimeTrial(match) {
     updateTimeTrialScoreBoard();
 }
 
-// start game
+// restart game function
+function restartTimeTrialGame() {
+    gameBoard.innerHTML = '';
+    gameHistoryList.innerHTML = '';
+    console.log(timerId);
+    clearInterval(timerId);
+    startTimeTrialGame();
+}
+
+// start game function
 function startTimeTrialGame() {
     cardsClickedCounter = 0;
     playerScore = 0;
@@ -68,6 +82,13 @@ function startTimeTrialGame() {
     minute = initialMinute;
     second = 0;
     timerId = setInterval(timer, 1000);
+
+    // Giving the reastart buttons their eventlistener
+    for (let restartGameBtn of restartGameBtns) {
+        restartGameBtn.addEventListener('click', () => {
+            restartTimeTrialGame();
+        });
+    }
 }
 
 // Functions for handeling the different difficulty button clicks
@@ -127,12 +148,4 @@ difficultyMediumBtn.addEventListener('click', () => {
 difficultyHardBtn.addEventListener('click', () => {
     handleDifficultyBtnClick();
     handleHardBtnClick();
-});
-
-restartGameBtn.addEventListener('click', () => {
-    gameBoard.innerHTML = '';
-    gameHistoryList.innerHTML = '';
-    console.log(timerId);
-    clearInterval(timerId);
-    startTimeTrialGame();
 });

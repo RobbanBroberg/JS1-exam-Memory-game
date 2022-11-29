@@ -272,3 +272,54 @@ body {
 li img {
     max-width: 40px;
 }
+
+.game-btns {
+    display: flex;
+    height: max-content;
+    justify-content: space-around;
+    align-items: center;
+}
+.restart-game-btn,
+.quit-to-menu-btn {
+    width: 45%;
+    padding: 1em;
+    background-color: gold;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid black;
+}
+/* Post game msg */
+
+.game-end-msg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 800px;
+    height: 550px;
+    background-color: black;
+
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding-bottom: 50px;
+}
+
+.game-end-msg::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -35%;
+    height: 90vh;
+    width: 70vw;
+    z-index: -1;
+    background-color: black;
+    opacity: 0.5;
+}
+
+.end-msg {
+    width: 800px;
+    height: 400px;
+}

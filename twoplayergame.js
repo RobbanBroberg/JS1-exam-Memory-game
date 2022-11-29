@@ -20,15 +20,20 @@ const playerTwo = { name: '', score: 0 };
 
 const players = [playerOne, playerTwo];
 
+// Function to update the scoreboard
+
 function updateTwoPlayerScoreBoard() {
     let currentPlayer = players[gameTurn].name;
     displayCurrentPlayer.innerText = `${currentPlayer}`;
 
     displayPlayerOneName.innerText = `${playerOne.name}:`;
     displayPlayerOneScore.innerText = `${playerOne.score}`;
+
     displayPlayerTwoName.innerText = `${playerTwo.name}:`;
     displayPlayerTwoScore.innerText = `${playerTwo.score}`;
 }
+
+// function to score the player if the cards match
 
 function scoreTwoPlayer(match) {
     if (match == true) {
@@ -48,15 +53,11 @@ function scoreTwoPlayer(match) {
     }
 }
 
-startTwoPlayerGameBtn.addEventListener('click', () => {
-    playerOne.name = playerOneNameField.value;
-    playerTwo.name = playerTwoNameField.value;
-    playerRegistrationFields.setAttribute('style', 'display: none;');
-    gameBodyContainer.setAttribute('style', 'display: flex;');
-    twoPlayerScoreBoard.setAttribute('style', 'display: block;');
-    gameMode = 'twoplayer';
+function restartTwoPlayerGame() {
+    gameBoard.innerHTML = '';
+    gameHistoryList.innerHTML = '';
     startTwoPlayerGame();
-});
+}
 
 function startTwoPlayerGame() {
     gameTurn = 0;
@@ -65,12 +66,23 @@ function startTwoPlayerGame() {
     let randomizedCards = randomizeArray(dubbleCards);
     appendCardsToBoard(gameBoard, randomizedCards, 'multi');
     updateTwoPlayerScoreBoard();
+
+    // Giving the reastart buttons their eventlistener
+    for (let restartGameBtn of restartGameBtns) {
+        restartGameBtn.addEventListener('click', () => {
+            restartTwoPlayerGame();
+        });
+    }
 }
 
 // eventlistener
 
-restartGameBtn.addEventListener('click', () => {
-    gameBoard.innerHTML = '';
-    gameHistoryList.innerHTML = '';
+startTwoPlayerGameBtn.addEventListener('click', () => {
+    playerOne.name = playerOneNameField.value;
+    playerTwo.name = playerTwoNameField.value;
+    playerRegistrationFields.setAttribute('style', 'display: none;');
+    gameBodyContainer.setAttribute('style', 'display: flex;');
+    twoPlayerScoreBoard.setAttribute('style', 'display: block;');
+    gameMode = 'twoplayer';
     startTwoPlayerGame();
 });

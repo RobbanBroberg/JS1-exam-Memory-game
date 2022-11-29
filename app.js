@@ -3,8 +3,9 @@
 // Variables including from DOM
 const gameBoard = document.querySelector('.game-board');
 
-const restartGameBtn = document.querySelector('.restart-game-btn');
-const quitToMenuBtn = document.querySelector('.quit-to-menu-btn');
+const restartGameBtns = document.querySelectorAll('.restart-game-btn');
+const quitToMenuBtns = document.querySelectorAll('.quit-to-menu-btn');
+
 const gameBodyContainer = document.querySelector('.game-body');
 
 const gameHistoryList = document.querySelector('.history-list');
@@ -156,6 +157,8 @@ function appendCardsToBoard(container, cardArray) {
     }
 }
 
-quitToMenuBtn.addEventListener('click', () => {
-    window.location.reload();
-});
+for (let quitToMenuBtn of quitToMenuBtns) {
+    quitToMenuBtn.addEventListener('click', () => {
+        window.location.reload();
+    });
+}
