@@ -17,16 +17,16 @@
 /* general */
 
 @font-face {
-  font-family: 'babesandbond';
-  src: url('./fonts/babesandbond.ttf');
+    font-family: 'babesandbond';
+    src: url('./fonts/babesandbond.ttf');
 }
 @font-face {
-  font-family: 'bond';
-  src: url('./fonts/Bond.ttf');
+    font-family: 'bond';
+    src: url('./fonts/Bond.ttf');
 }
 @font-face {
-  font-family: 'goldeneye';
-  src: url('./fonts/GoldenEye.ttf')
+    font-family: 'goldeneye';
+    src: url('./fonts/GoldenEye.ttf');
 }
 
 body {
@@ -39,7 +39,6 @@ body {
     font-size: 3rem;
     font-weight: 200;
 }
-.bond-font {
     font-family: babesandbond;
 }
 /* Game options menu */
@@ -90,7 +89,18 @@ body {
     width: 500px;
     /* display: flex; */
     flex-direction: column;
+    align-items: center;
     color: var(--clr-neutral-900);
+}
+.player-reg input {
+    margin-bottom: 1em;
+    width: 60%;
+}
+.player-reg label {
+    border: 1px solid red;
+}
+.start-game-btn {
+    /* align-self: center; */
 }
 
 /* time trial */
@@ -223,9 +233,9 @@ body {
     grid-template-columns: 1fr 1fr;
 }
 .flex-container {
-  display: flex;
-  text-align: center;
-  justify-content: center;
+    display: flex;
+    text-align: center;
+    justify-content: center;
 }
 .right-border {
     border-right: 3px double black;

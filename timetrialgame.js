@@ -9,26 +9,43 @@ const timeDisplay = document.querySelector('.time-display');
 
 let playerScore = 0;
 
-let interval;
-let minutes = 10,
-    seconds = 0;
-let minutesDisplayed = minutes < 10 ? `0${minutes}` : minutes;
-let secondsDisplayed = seconds < 10 ? `0${seconds}` : seconds;
-let timer = `${minutesDisplayed}:${secondsDisplayed}`;
+// let interval;
+// let minutes = 10,
+//     seconds = 0;
+// let minutesDisplayed = minutes < 10 ? `0${minutes}` : minutes;
+// let secondsDisplayed = seconds < 10 ? `0${seconds}` : seconds;
+// // let timer = `${minutesDisplayed}:${secondsDisplayed}`;
 
-//function for a timer ticking down
-function timeLeft() {
-    seconds -= 1;
+// //function for a timer ticking down
+// function timeLeft() {
+//     seconds -= 1;
 
-    if (seconds == 0) {
-        minutes -= 1;
-        seconds = 59;
+//     if (seconds == 0) {
+//         minutes -= 1;
+//         seconds = 59;
+//     }
+// }
+// x;
+
+let minute = 0;
+let second = 0;
+let timerId;
+function timer() {
+    second++;
+    if (second == 60) {
+        minute++;
+        second = 0;
+    }
+    timeDisplay.innerText = `${minute}:${second}`;
+
+    if (minute == 3 || playerScore == 12) {
+        clearInterval(timerId);
     }
 }
 
 // display update
 function updateTimeTrialScoreBoard() {
-    timeDisplay.innerText = `${timer}`;
+    // timeDisplay.innerText = `${timer}`;
     displayPlayerScore.innerText = playerScore;
 }
 
@@ -47,6 +64,7 @@ function startTimeTrialGame() {
     let randomizedCards = randomizeArray(dubbleCards);
     appendCardsToBoard(gameBoard, randomizedCards, 'single');
     updateTimeTrialScoreBoard();
+    timerId = setInterval(timer, 1000);
 }
 
 // eventlistener
@@ -55,7 +73,7 @@ difficultyEasyBtn.addEventListener('click', () => {
     difficultyContainer.setAttribute('style', 'display: none;');
     gameBodyContainer.setAttribute('style', 'display: flex;');
     timeTrialScoreBoard.setAttribute('style', 'display: block;');
-    interval = setInterval(timeLeft, 1000);
+    // interval = setInterval(timeLeft, 1000);
     gameMode = 'single';
     startTimeTrialGame();
 });
