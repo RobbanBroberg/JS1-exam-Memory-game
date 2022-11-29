@@ -24,9 +24,9 @@ function updateTwoPlayerScoreBoard() {
     let currentPlayer = players[gameTurn].name;
     displayCurrentPlayer.innerText = `${currentPlayer}`;
 
-    displayPlayerOneName.innerText = `${playerOne.name}:`;
+    displayPlayerOneName.innerText = `${playerOne.name}`;
     displayPlayerOneScore.innerText = `${playerOne.score}`;
-    displayPlayerTwoName.innerText = `${playerTwo.name}:`;
+    displayPlayerTwoName.innerText = `${playerTwo.name}`;
     displayPlayerTwoScore.innerText = `${playerTwo.score}`;
 }
 

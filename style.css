@@ -14,20 +14,53 @@
 *::before {
     box-sizing: border-box;
 }
-/* general */
 
+/* fonts */
 @font-face {
     font-family: 'babesandbond';
     src: url('./fonts/babesandbond.ttf');
 }
 @font-face {
-    font-family: 'bond';
-    src: url('./fonts/Bond.ttf');
+    font-family: 'spectre';
+    src: url('./fonts/Spectre007-KAdA.ttf');
 }
 @font-face {
     font-family: 'goldeneye';
     src: url('./fonts/GoldenEye.ttf');
 }
+@font-face{
+  font-family: 'quantum';
+  src: url('./fonts/Quantum-18n0.ttf');
+}
+
+.babesandbond-font{
+  font-family: babesandbond;
+}
+.goldeneye-font{
+  font-family: goldeneye;
+}
+.spectre-font {
+  font-family: spectre;
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: silver;
+}
+.quantum-font{
+  font-family: quantum;
+  color: gold;
+}
+.babesandbond-font-btn{
+  font-family: babesandbond;
+  font-size: 3rem;
+}
+.button-font-style{
+  font-size: 2rem;
+  letter-spacing: -1px;
+  line-height: 80px;
+  text-align: start;
+}
+
+/* general */
 
 body {
     background-color: var(--clr-neutral-900);
@@ -38,9 +71,8 @@ body {
     font-family: var(--ff-title);
     font-size: 3rem;
     font-weight: 200;
-}
-.bond-font{
-    font-family: babesandbond;
+    margin-left: -1em;
+    letter-spacing: -6px;
 }
 
 
@@ -51,23 +83,24 @@ body {
 }
 
 .menu-container {
-    background-color: lightgray;
+    background-color: black;
     width: 30%;
     padding: 2em;
     justify-content: center;
 }
 .welcome-phrase {
     text-align: center;
-    color: black;
 }
 .welcome-heading {
     margin-top: -0.5em;
     font-size: 2.2rem;
     font-weight: 500;
+    font-size: 3rem;
+    color: silver;
 }
 .welcome-para {
     margin-top: -0.5em;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
 }
 .menu-buttons {
     display: flex;
@@ -76,11 +109,12 @@ body {
 }
 .two-players_menu-btn,
 .time-trial_menu-btn {
-    padding: 1.5em;
     background-color: gold;
-    font-size: 1rem;
     border-radius: 4px;
     border: 1px solid black;
+    font-family: goldeneye;
+    display: flex;
+    justify-content: center;
 }
 
 /* two players */
@@ -96,9 +130,25 @@ body {
 .player-reg input {
     margin-bottom: 1em;
     width: 60%;
+    padding: 0.2em;
+    padding-bottom: 0;
+    font-size: 1.5rem;
+    font-family: goldeneye;
+    letter-spacing: 1px;
+    text-align: center;
+    background-color: black;
+    color: gold;
+    border: 1px solid silver;
 }
-.player-reg label {
-    border: 1px solid red;
+.player-reg input:focus{
+  outline: 2px double silver;
+}
+input::placeholder{
+  font-family: babesandbond;
+  color: gold;
+  font-size: 1.5rem;
+  text-align: center;
+  display: block;
 }
 
 
@@ -107,6 +157,7 @@ body {
     display: none;
     justify-content: center;
     text-align: center;
+    
 }
 .difficulty_menu {
     width: 30%;
@@ -114,25 +165,23 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: lightgrey;
+    background-color: black;
     gap: 10px;
 }
-.difficulty_header {
-    color: black;
-    font-size: 1.7rem;
-    font-weight: 500;
-}
+
 .difficulty-easy-btn,
 .difficulty-medium-btn,
 .difficulty-hard-btn,
 .start-game-btn {
     width: 60%;
-    padding: 1em;
+    padding: 0.3em;
     background-color: gold;
-    font-size: 1rem;
+    font-size: 2rem;
     border-radius: 4px;
     border: 1px solid black;
+    font-family: goldeneye;
 }
+
 
 /* Game */
 .game-body {
@@ -141,9 +190,10 @@ body {
     justify-content: center;
     margin: 2em auto;
     /* padding: 2em; */
+    /* background-color: silver; */
 }
 .game-board {
-    background-color: var(--clr-neutral-200);
+    background-color: var(--clr-neutral-200); 
     width: 900px;
     display: flex;
     flex-wrap: wrap;
@@ -212,16 +262,17 @@ body {
 .score-board-two,
 .score-board-time,
 .history {
-    background-color: white;
+    background-color: black;
     padding: 0.5em;
     margin-bottom: 1rem;
-    box-shadow: inset 0 0 5px grey;
+    color: gold;
+    font-family: quantum;
 }
 .turn-display,
 .time-display {
     text-align: center;
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 500;
 }
 .score-board-two div {
     text-align: center;
@@ -237,33 +288,35 @@ body {
     justify-content: center;
 }
 .right-border {
-    border-right: 3px double black;
+    border-right: 3px double silver;
 }
 
 .player-one-name,
 .player-two-name,
 .player-name {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     margin-bottom: -0.5em;
 }
 .player-one-score,
 .player-two-score,
 .player-score {
-    font-weight: 900;
-    font-size: 1.5rem;
+    font-weight: 200;
+    font-size: 1.5em;
 }
 .history {
     height: 450px;
     overflow-y: scroll;
+    font-size: 1.2rem;
 }
 .score-title,
 .history-title {
     text-align: center;
-    border-bottom: 6px double grey;
-    font-size: 1.2rem;
-    font-weight: 700;
+    border-bottom: 6px double silver;
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-family: quantum;
 }
 
 li img {
-    max-width: 40px;
+    max-width: 30px;
 }

@@ -95,7 +95,7 @@ function updateGameHistory(storedCards, player) {
     console.log(newSrc);
     cardImg.setAttribute('src', cardImgSrc);
 
-    historyItem.innerText = `${player} found: `;
+    historyItem.innerText = `${player} found `;
     historyItem.append(cardImg);
 
     console.log(historyItem);
