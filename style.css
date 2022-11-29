@@ -17,12 +17,14 @@
 /* general */
 
 @font-face {
-    font-family: 'babesandbond';
-    src: url('./fonts/babesandbond.ttf');
-
+  font-family: 'babesandbond';
+  src: url('./fonts/babesandbond.ttf');
+}
+@font-face {
   font-family: 'bond';
   src: url('./fonts/Bond.ttf');
-
+}
+@font-face {
   font-family: 'goldeneye';
   src: url('./fonts/GoldenEye.ttf')
 }
