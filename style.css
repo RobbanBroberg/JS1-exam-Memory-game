@@ -39,10 +39,12 @@ body {
     font-size: 3rem;
     font-weight: 200;
 }
+.bond-font{
     font-family: babesandbond;
 }
-/* Game options menu */
 
+
+/* Game options menu */
 .start-menu {
     display: flex;
     justify-content: center;
@@ -82,7 +84,6 @@ body {
 }
 
 /* two players */
-
 .player-reg {
     display: none;
     margin: 2em auto;
@@ -99,9 +100,7 @@ body {
 .player-reg label {
     border: 1px solid red;
 }
-.start-game-btn {
-    /* align-self: center; */
-}
+
 
 /* time trial */
 .difficulty_container {

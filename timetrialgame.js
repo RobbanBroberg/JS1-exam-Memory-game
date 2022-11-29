@@ -5,47 +5,35 @@ const timeTrialScoreBoard = document.querySelector('.timetrial');
 const displayPlayerScore = document.querySelector('.player-score');
 const difficultyContainer = document.querySelector('.difficulty_container');
 const difficultyEasyBtn = document.querySelector('.difficulty-easy-btn');
+const difficultyMediumBtn = document.querySelector('.difficulty-medium-btn');
+const difficultyHardBtn = document.querySelector('.diffculty-hard-btn');
 const timeDisplay = document.querySelector('.time-display');
 
 let playerScore = 0;
 
-// let interval;
-// let minutes = 10,
-//     seconds = 0;
-// let minutesDisplayed = minutes < 10 ? `0${minutes}` : minutes;
-// let secondsDisplayed = seconds < 10 ? `0${seconds}` : seconds;
-// // let timer = `${minutesDisplayed}:${secondsDisplayed}`;
-
-// //function for a timer ticking down
-// function timeLeft() {
-//     seconds -= 1;
-
-//     if (seconds == 0) {
-//         minutes -= 1;
-//         seconds = 59;
-//     }
-// }
-// x;
-
-let minute = 0;
+let minute;
 let second = 0;
 let timerId;
-function timer() {
-    second++;
-    if (second == 60) {
-        minute++;
-        second = 0;
-    }
-    timeDisplay.innerText = `${minute}:${second}`;
 
-    if (minute == 3 || playerScore == 12) {
+
+function timer() {
+
+  let secondsDisplayed = second < 10 ? `0${second}` : second;
+  timeDisplay.innerText = `Time left: ${minute}:${secondsDisplayed}`;
+
+    second--;
+    if (second == -1) {
+        minute--;
+        second = 59;
+    }
+
+    if (minute == 0 || playerScore == 12) {
         clearInterval(timerId);
     }
 }
 
 // display update
 function updateTimeTrialScoreBoard() {
-    // timeDisplay.innerText = `${timer}`;
     displayPlayerScore.innerText = playerScore;
 }
 
@@ -73,9 +61,30 @@ difficultyEasyBtn.addEventListener('click', () => {
     difficultyContainer.setAttribute('style', 'display: none;');
     gameBodyContainer.setAttribute('style', 'display: flex;');
     timeTrialScoreBoard.setAttribute('style', 'display: block;');
-    // interval = setInterval(timeLeft, 1000);
     gameMode = 'single';
+    minute = 5;
+    timeDisplay.innerText = `Time left: ${minute}:0${second}`;
     startTimeTrialGame();
+});
+
+difficultyMediumBtn.addEventListener('click', () => {
+  difficultyContainer.setAttribute('style', 'display: none;');
+  gameBodyContainer.setAttribute('style', 'display: flex;');
+  timeTrialScoreBoard.setAttribute('style', 'display: block;');
+  gameMode = 'single';
+  minute = 2;
+  timeDisplay.innerText = `Time left: ${minute}:0${second}`;
+  startTimeTrialGame();
+});
+
+difficultyHardBtn.addEventListener('click', () => {
+  difficultyContainer.setAttribute('style', 'display: none;');
+  gameBodyContainer.setAttribute('style', 'display: flex;');
+  timeTrialScoreBoard.setAttribute('style', 'display: block;');
+  gameMode = 'single';
+  minute = 2;
+  timeDisplay.innerText = `Time left: ${minute}:0${second}`;
+  startTimeTrialGame();
 });
 
 restartGameBtn.addEventListener('click', () => {
