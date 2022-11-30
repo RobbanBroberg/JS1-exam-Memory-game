@@ -23,6 +23,7 @@ let soundOnOff;
 
 let cardsClickedCounter = 0;
 let gameTurn = 0;
+let lockBoard = false;
 
 let gameMode;
 let isAMatch;
@@ -113,6 +114,8 @@ function handleNonMatchingCards(storedCards) {
         // re-add the eventlistener to the card
         cardOneParent.addEventListener('click', handleCardClick);
         cardTwoParent.addEventListener('click', handleCardClick);
+
+        lockBoard = false;
     }, 1000);
 }
 
@@ -161,6 +164,8 @@ function handleGameControls(mode, match) {
 
 // function Click card to flip
 function handleCardClick(card) {
+  if(lockBoard) return;
+  
     let parent = card.target.parentNode;
     parent.classList.add('img-card-rotate');
     cardsClickedCounter = (cardsClickedCounter + 1) % 2;
@@ -168,6 +173,7 @@ function handleCardClick(card) {
     if (cardsClickedCounter == 0) {
         isAMatch = compareCards(storedCards); // returns true or false
         handleGameControls(gameMode, isAMatch);
+        lockBoard = true;
     }
     //Removes the eventlsitener so you can't press an open card
     parent.removeEventListener('click', handleCardClick);
