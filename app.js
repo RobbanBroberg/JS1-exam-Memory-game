@@ -13,7 +13,6 @@ const gameHistoryList = document.querySelector('.history-list');
 const goldeneyeTheme = document.getElementById('goldeneyeTheme');
 const muteBtn = document.getElementById('muteBtn');
 
-
 const gameEndMsg = document.querySelector('.game-end-msg');
 const endMsg = document.querySelector('.end-msg');
 const twoPlayerScores = document.querySelector('.score-board-two');
@@ -121,6 +120,8 @@ function handleNonMatchingCards(storedCards) {
     }, 1000);
 }
 
+
+
 function handleTwoPlayerEndMsg() {
     gameEndMsg.setAttribute('style', 'display: flex;');
     endMsg.append(twoPlayerScores.cloneNode(true));
@@ -139,6 +140,7 @@ function handleTimeTrialEndMsg() {
     winnerMsg.innerText = `You found all pairs in ${time}`;
     endMsg.append(winnerMsg);
 }
+
 
 function handleGameControls(mode, match) {
     if (mode == 'single') {

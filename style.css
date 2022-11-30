@@ -189,6 +189,7 @@ input::placeholder {
 .difficulty-easy-btn,
 .difficulty-medium-btn,
 .difficulty-hard-btn,
+.best-times-btn,
 .start-game-btn {
     width: 60%;
     padding: 0.3em;
@@ -198,6 +199,7 @@ input::placeholder {
     border: 1px solid black;
     font-family: goldeneye;
 }
+
 
 /* Game */
 .game-body {

@@ -90,7 +90,6 @@ function restartTimeTrialGame() {
     gameBoard.innerHTML = '';
     gameHistoryList.innerHTML = '';
     clearInterval(timerId);
-    y;
     gameEndMsg.setAttribute('style', 'display: none;');
     startTimeTrialGame();
 }
@@ -106,6 +105,7 @@ function startTimeTrialGame() {
     minute = initialMinute;
     second = 0;
     timerId = setInterval(timer, 1000);
+    
 
     // Giving the reastart buttons their eventlistener
     for (let restartGameBtn of restartGameBtns) {
