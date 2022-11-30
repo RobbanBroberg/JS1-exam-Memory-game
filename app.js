@@ -100,6 +100,8 @@ function handleMatchingCards(storedCards) {
         // add a class to lower opacity
         cardOne.classList.add('img-card-lower-opacity');
         cardTwo.classList.add('img-card-lower-opacity');
+
+        lockBoard = false;
     }, 800);
 }
 
