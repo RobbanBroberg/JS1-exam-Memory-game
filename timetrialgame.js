@@ -10,6 +10,7 @@ const difficultyMediumBtn = document.querySelector('.difficulty-medium-btn');
 const difficultyHardBtn = document.querySelector('.difficulty-hard-btn');
 
 const timeDisplay = document.querySelector('.time-display');
+const currentTime = document.querySelector('.current-time')
 
 const gameEndMsg = document.querySelector('.game-end-msg');
 
@@ -30,6 +31,7 @@ let minute;
 let second = 0;
 let timerId;
 
+
 // countdown timer, initial minute is set by game mode,
 //   -see functions for handle difficulty btn down below
 // stops game if all pairs are found or time is up.
@@ -40,7 +42,12 @@ function timer() {
         second = 59;
     }
     let secondsDisplayed = second < 10 ? `0${second}` : second;
-    timeDisplay.innerText = `Time left: ${minute}:${secondsDisplayed}`;
+    currentTime.innerText = `${minute}:${secondsDisplayed}`;
+
+    if(minute == 0 && second == 30) {
+      currentTime.classList.add('blinking-timer');
+    }
+
     if (playerScore == maxPoints) {
         clearInterval(timerId);
     } else if (minute == 0 && second == 0) {
@@ -48,6 +55,7 @@ function timer() {
         gameEndMsg.setAttribute('style', 'display: flex;');
     }
 }
+
 
 // display update
 function updateTimeTrialScoreBoard() {
@@ -104,7 +112,7 @@ function handleDifficultyBtnClick() {
 // for the difficulty Easy button
 function handleEasyBtnClick() {
     initialMinute = 5;
-    timeDisplay.innerText = `Time left: ${initialMinute}:0${second}`;
+    currentTime.innerText = `${initialMinute}:0${second}`;
     cardsByGameMode = cardArray;
     maxPoints = cardsByGameMode.lenght;
     startTimeTrialGame();
@@ -113,7 +121,7 @@ function handleEasyBtnClick() {
 // for the difficulty Medium button
 function handleMediumBtnClick() {
     initialMinute = 2;
-    timeDisplay.innerText = `Time left: ${initialMinute}:0${second}`;
+    currentTime.innerText = ` ${initialMinute}:0${second}`;
     cardsByGameMode = cardArray;
     maxPoints = cardsByGameMode.lenght;
     startTimeTrialGame();
@@ -122,7 +130,7 @@ function handleMediumBtnClick() {
 // for the difficulty Hard button
 function handleHardBtnClick() {
     initialMinute = 2;
-    timeDisplay.innerText = `Time left: ${initialMinute}:0${second}`;
+    currentTime.innerText = ` ${initialMinute}:0${second}`;
     cardsByGameMode = cardArray.concat(moreCards);
     maxPoints = cardsByGameMode.lenght;
     startTimeTrialGame();

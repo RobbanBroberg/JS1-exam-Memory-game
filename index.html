@@ -36,6 +36,12 @@
             <title>Memory game, JavaScript1 Examination exercise</title>
         </head>
         <body>
+            <audio
+                src="./audio/GoldeneyeN64.mp3"
+                id="goldeneyeTheme"
+                loop="loop"
+                autoplay
+            ></audio>
             <main>
                 <h1 class="page-title">
                     <span class="babesandbond-font">7 </span
@@ -132,7 +138,7 @@
                         </div>
                         <div class="timetrial">
                             <p class="time-display">
-                                <span class="current-time"></span>
+                                Time left: <span class="current-time"></span>
                             </p>
                             <div class="score-board-time">
                                 <div>
@@ -168,6 +174,16 @@
                         <button class="restart-game-btn">Restart Game</button>
                         <button class="quit-to-menu-btn">Quit to menu</button>
                     </div>
+                </div>
+                <div class="play-music">
+                    <p>Unmute/mute music</p>
+                    <button
+                        class="mute-btn"
+                        id="muteBtn"
+                        onclick="muteUnMute()"
+                    >
+                        &#128360;
+                    </button>
                 </div>
             </main>
         </body>

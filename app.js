@@ -10,6 +10,11 @@ const gameBodyContainer = document.querySelector('.game-body');
 
 const gameHistoryList = document.querySelector('.history-list');
 
+const goldeneyeTheme = document.getElementById('goldeneyeTheme');
+const muteBtn = document.getElementById('muteBtn');
+
+let soundOnOff;
+
 let cardsClickedCounter = 0;
 let gameTurn = 0;
 
@@ -20,6 +25,20 @@ let gameHistory;
 let cardPairsFound;
 
 const storedCards = []; // For storing which two cards is clicked for comparison
+
+
+function muteUnMute(){
+  if(soundOnOff == 0){
+    soundOnOff = 1;
+    goldeneyeTheme.pause();
+    muteBtn.innerHTML = '&#128360';
+
+  }else{
+    soundOnOff = 0;
+    goldeneyeTheme.play();
+    muteBtn.innerHTML = '&#128362';
+  }
+}
 
 //Array ranomdizer insp. https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Modern_method
 

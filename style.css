@@ -75,6 +75,7 @@ body {
     letter-spacing: -6px;
 }
 
+
 /* Game options menu */
 .start-menu {
     display: flex;
@@ -114,6 +115,24 @@ body {
     font-family: goldeneye;
     display: flex;
     justify-content: center;
+}
+.play-music{
+  position: absolute;
+  top: 0;
+  right: 100px;
+  flex-direction: column;
+  text-align: center;
+  align-items: end;
+  font-size: 1.3rem;
+}
+.mute-btn{
+  width: 3%;
+  font-size: 2rem;
+  padding-left: 0.5em;
+  padding-right: 1em;
+  border-radius: 60%;
+  background-color: gold;
+  text-align: center;
 }
 
 /* two players */
@@ -373,4 +392,18 @@ li img {
 .end-msg {
     width: 800px;
     height: 400px;
+}
+
+
+.blinking-timer{
+  animation: blink-red 0.5s ease-in-out infinite alternate;  
+}
+
+@keyframes blink-red {
+  0% {
+    color: rgb(255, 0, 0);
+  }
+  100% {
+    color: rgb(177, 2, 2)
+  }
 }
