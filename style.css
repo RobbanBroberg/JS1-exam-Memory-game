@@ -28,36 +28,36 @@
     font-family: 'goldeneye';
     src: url('./fonts/GoldenEye.ttf');
 }
-@font-face{
-  font-family: 'quantum';
-  src: url('./fonts/Quantum-18n0.ttf');
+@font-face {
+    font-family: 'quantum';
+    src: url('./fonts/Quantum-18n0.ttf');
 }
 
-.babesandbond-font{
-  font-family: babesandbond;
+.babesandbond-font {
+    font-family: babesandbond;
 }
-.goldeneye-font{
-  font-family: goldeneye;
+.goldeneye-font {
+    font-family: goldeneye;
 }
 .spectre-font {
-  font-family: spectre;
-  font-weight: 500;
-  font-size: 1.5rem;
-  color: silver;
+    font-family: spectre;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: silver;
 }
-.quantum-font{
-  font-family: quantum;
-  color: gold;
+.quantum-font {
+    font-family: quantum;
+    color: gold;
 }
-.babesandbond-font-btn{
-  font-family: babesandbond;
-  font-size: 3rem;
+.babesandbond-font-btn {
+    font-family: babesandbond;
+    font-size: 3rem;
 }
-.button-font-style{
-  font-size: 2rem;
-  letter-spacing: -1px;
-  line-height: 80px;
-  text-align: start;
+.button-font-style {
+    font-size: 2rem;
+    letter-spacing: -1px;
+    line-height: 80px;
+    text-align: start;
 }
 
 /* general */
@@ -159,15 +159,15 @@ body {
     color: gold;
     border: 1px solid silver;
 }
-.player-reg input:focus{
-  outline: 2px double silver;
+.player-reg input:focus {
+    outline: 2px double silver;
 }
-input::placeholder{
-  font-family: babesandbond;
-  color: gold;
-  font-size: 1.5rem;
-  text-align: center;
-  display: block;
+input::placeholder {
+    font-family: babesandbond;
+    color: gold;
+    font-size: 1.5rem;
+    text-align: center;
+    display: block;
 }
 
 /* time trial */
@@ -175,7 +175,6 @@ input::placeholder{
     display: none;
     justify-content: center;
     text-align: center;
-    
 }
 .difficulty_menu {
     width: 30%;
@@ -199,7 +198,6 @@ input::placeholder{
     border: 1px solid black;
     font-family: goldeneye;
 }
-
 
 /* Game */
 .game-body {
@@ -282,7 +280,8 @@ input::placeholder{
 .time-display,
 .score-board-two,
 .score-board-time,
-.history {
+.history,
+.end-msg {
     background-color: black;
     padding: 0.5em;
     margin-bottom: 1rem;
@@ -325,7 +324,7 @@ input::placeholder{
     font-size: 1.5em;
 }
 .history {
-    min-height: 300px;
+    height: 300px;
     /* max-height: 450px; */
     overflow-y: scroll;
     font-size: 1.2rem;
@@ -392,6 +391,10 @@ li img {
 .end-msg {
     width: 800px;
     height: 400px;
+}
+.winner-msg {
+    text-align: center;
+    font-size: 2rem;
 }
 
 

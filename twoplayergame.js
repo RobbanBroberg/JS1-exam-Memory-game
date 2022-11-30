@@ -32,8 +32,18 @@ function updateTwoPlayerScoreBoard() {
     displayPlayerTwoScore.innerText = `${playerTwo.score}`;
 }
 
-// function to score the player if the cards match
+// function to compare the players points to se who won
+function determinWinner() {
+    if (playerOne.score > playerTwo.score) {
+        return `The winner is ${playerOne.name}!`;
+    } else if (playerOne.score < playerTwo.score) {
+        return `The winner is ${playerTwo.name}!`;
+    } else {
+        return `It's a tie`;
+    }
+}
 
+// function to score the current player if the cards match or sets the next player
 function scoreTwoPlayer(match) {
     if (match == true) {
         //give points to the player::::
@@ -52,18 +62,23 @@ function scoreTwoPlayer(match) {
     }
 }
 
+// resets gameparameters and starts the game again
 function restartTwoPlayerGame() {
     gameBoard.innerHTML = '';
     gameHistoryList.innerHTML = '';
+    playerOne.score = 0;
+    playerTwo.score = 0;
+    gameEndMsg.setAttribute('style', 'display: none;');
     startTwoPlayerGame();
 }
 
+// start game function
 function startTwoPlayerGame() {
     gameTurn = 0;
     cardsClickedCounter = 0;
     let dubbleCards = cardArray.concat(cardArray);
     let randomizedCards = randomizeArray(dubbleCards);
-    appendCardsToBoard(gameBoard, randomizedCards, 'multi');
+    appendCardsToBoard(gameBoard, randomizedCards, 'multi'); // calls the function that adds all cards to the board.
     updateTwoPlayerScoreBoard();
 
     // Giving the reastart buttons their eventlistener
@@ -74,9 +89,8 @@ function startTwoPlayerGame() {
     }
 }
 
-// eventlistener
-
-startTwoPlayerGameBtn.addEventListener('click', () => {
+// function for the start Two Player Game btn
+function handleStartTwoPlayerGameBtnClick() {
     playerOne.name = playerOneNameField.value;
     playerTwo.name = playerTwoNameField.value;
     playerRegistrationFields.setAttribute('style', 'display: none;');
@@ -84,4 +98,10 @@ startTwoPlayerGameBtn.addEventListener('click', () => {
     twoPlayerScoreBoard.setAttribute('style', 'display: block;');
     gameMode = 'twoplayer';
     startTwoPlayerGame();
+}
+
+// eventlistener
+
+startTwoPlayerGameBtn.addEventListener('click', () => {
+    handleStartTwoPlayerGameBtnClick();
 });

@@ -12,8 +12,6 @@ const difficultyHardBtn = document.querySelector('.difficulty-hard-btn');
 const timeDisplay = document.querySelector('.time-display');
 const currentTime = document.querySelector('.current-time')
 
-const gameEndMsg = document.querySelector('.game-end-msg');
-
 // To store player points
 let playerScore = 0;
 
@@ -23,7 +21,7 @@ let cardsByGameMode;
 
 // the same as total number of pairs available, default 12 but changes depending on game mode
 //   -see functions for handle difficulty btn down below
-let maxPoints = 12;
+let maxPoints;
 
 // variables used by the timer function
 let initialMinute;
@@ -31,6 +29,11 @@ let minute;
 let second = 0;
 let timerId;
 
+// function to write out the Game Over ("Time has run out") -message
+function handleGameOverMsg() {
+    gameEndMsg.setAttribute('style', 'display: flex;');
+    endMsg.innerHTML = '<img src="assets/gameLost.gif" alt="" />';
+}
 
 // countdown timer, initial minute is set by game mode,
 //   -see functions for handle difficulty btn down below
@@ -49,33 +52,46 @@ function timer() {
     }
 
     if (playerScore == maxPoints) {
+        // stopp the timer if all pairs is found
         clearInterval(timerId);
     } else if (minute == 0 && second == 0) {
+        // stopp timer and throw game over msg if timer hits 0
         clearInterval(timerId);
-        gameEndMsg.setAttribute('style', 'display: flex;');
+        handleGameOverMsg();
     }
 }
 
+// calculating how long it took to find all pairs
+function calculateCompletedInTime() {
+    let timeLeft = minute * 60 + second;
+    completedInTime = initialMinute * 60 - timeLeft;
+    completedMinuts = Math.floor(completedInTime / 60);
+    completedSeconds = completedInTime % 60;
+    return completedMinuts + ' : ' + completedSeconds;
+}
 
-// display update
+// update the score bord display
 function updateTimeTrialScoreBoard() {
     displayPlayerScore.innerText = playerScore;
 }
 
+// give the player a point if cards match
 function scoreTimeTrial(match) {
     if (match == true) {
         playerScore += 1;
-        updateGameHistory(storedCards, 'Player');
+        updateGameHistory(storedCards, 'You');
     }
     updateTimeTrialScoreBoard();
 }
 
-// restart game function
+// resets gameparameters and starts the game again
 function restartTimeTrialGame() {
     gameBoard.innerHTML = '';
     gameHistoryList.innerHTML = '';
     console.log(timerId);
     clearInterval(timerId);
+    y;
+    gameEndMsg.setAttribute('style', 'display: none;');
     startTimeTrialGame();
 }
 
@@ -85,7 +101,7 @@ function startTimeTrialGame() {
     playerScore = 0;
     let dubbleCards = cardsByGameMode.concat(cardsByGameMode); // dubble the cards to have pairs
     let randomizedCards = randomizeArray(dubbleCards);
-    appendCardsToBoard(gameBoard, randomizedCards, 'single');
+    appendCardsToBoard(gameBoard, randomizedCards, 'single'); // calls the function that adds all cards to the board.
     updateTimeTrialScoreBoard();
     minute = initialMinute;
     second = 0;
@@ -114,7 +130,7 @@ function handleEasyBtnClick() {
     initialMinute = 5;
     currentTime.innerText = `${initialMinute}:0${second}`;
     cardsByGameMode = cardArray;
-    maxPoints = cardsByGameMode.lenght;
+    maxPoints = 12;
     startTimeTrialGame();
 }
 
@@ -123,7 +139,7 @@ function handleMediumBtnClick() {
     initialMinute = 2;
     currentTime.innerText = ` ${initialMinute}:0${second}`;
     cardsByGameMode = cardArray;
-    maxPoints = cardsByGameMode.lenght;
+    maxPoints = 12;
     startTimeTrialGame();
 }
 
@@ -132,7 +148,9 @@ function handleHardBtnClick() {
     initialMinute = 2;
     currentTime.innerText = ` ${initialMinute}:0${second}`;
     cardsByGameMode = cardArray.concat(moreCards);
-    maxPoints = cardsByGameMode.lenght;
+
+    maxPoints = 18;
+    cardPairsToFind = 18;
     startTimeTrialGame();
 
     let cardContainers = document.querySelectorAll('.card-container');
