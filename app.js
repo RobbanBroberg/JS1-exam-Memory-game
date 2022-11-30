@@ -33,7 +33,7 @@ let cardPairsToFind = 12; // Deafult 12 pairs
 const storedCards = []; // For storing which two cards is clicked for comparison
 
 
-function muteUnMute(){
+function muteUnmute(){
   if(soundOnOff == 0){
     soundOnOff = 1;
     goldeneyeTheme.pause();

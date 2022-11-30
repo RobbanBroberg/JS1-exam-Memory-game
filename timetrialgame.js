@@ -88,7 +88,6 @@ function scoreTimeTrial(match) {
 function restartTimeTrialGame() {
     gameBoard.innerHTML = '';
     gameHistoryList.innerHTML = '';
-    console.log(timerId);
     clearInterval(timerId);
     y;
     gameEndMsg.setAttribute('style', 'display: none;');
