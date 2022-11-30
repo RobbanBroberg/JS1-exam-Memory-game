@@ -65,9 +65,10 @@ function timer() {
 function calculateCompletedInTime() {
     let timeLeft = minute * 60 + second;
     completedInTime = initialMinute * 60 - timeLeft;
-    completedMinuts = Math.floor(completedInTime / 60);
+    completedMinutes = Math.floor(completedInTime / 60);
     completedSeconds = completedInTime % 60;
-    return completedMinuts + ' : ' + completedSeconds;
+    let completedSecondsDisplayed = completedSeconds < 10 ? `0${completedSeconds}` : completedSeconds;
+    return `${completedMinutes} : ${completedSecondsDisplayed}`;
 }
 
 // update the score bord display
