@@ -78,7 +78,7 @@ function startTwoPlayerGame() {
     cardsClickedCounter = 0;
     let dubbleCards = cardArray.concat(cardArray);
     let randomizedCards = randomizeArray(dubbleCards);
-    appendCardsToBoard(gameBoard, randomizedCards, 'multi'); // calls the function that adds all cards to the board.
+    appendCardsToBoard(gameBoard, randomizedCards); // calls the function that adds all cards to the board.
     updateTwoPlayerScoreBoard();
 
     // Giving the reastart buttons their eventlistener
