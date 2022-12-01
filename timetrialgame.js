@@ -91,6 +91,7 @@ function restartTimeTrialGame() {
     gameBoard.innerHTML = '';
     gameHistoryList.innerHTML = '';
     clearInterval(timerId);
+    cardPairsToFind = maxPoints;
     gameEndMsg.setAttribute('style', 'display: none;');
     startTimeTrialGame();
 }

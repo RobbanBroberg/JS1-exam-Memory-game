@@ -68,6 +68,7 @@ function restartTwoPlayerGame() {
     gameHistoryList.innerHTML = '';
     playerOne.score = 0;
     playerTwo.score = 0;
+    cardPairsToFind = 12;
     gameEndMsg.setAttribute('style', 'display: none;');
     startTwoPlayerGame();
 }
