@@ -75,6 +75,17 @@ body {
     letter-spacing: -6px;
 }
 
+a {
+    text-decoration: none;
+    color: silver;
+    text-align: center;
+    margin-left: 115px;
+    width: max-content;
+}
+
+pre {
+    width: 50%;
+}
 
 /* Game options menu */
 .start-menu {
@@ -115,24 +126,26 @@ body {
     font-family: goldeneye;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
-.play-music{
-  position: absolute;
-  top: 0;
-  right: 100px;
-  flex-direction: column;
-  text-align: center;
-  align-items: end;
-  font-size: 1.3rem;
+.play-music {
+    position: absolute;
+    top: 0;
+    right: 100px;
+    flex-direction: column;
+    text-align: center;
+    align-items: end;
+    font-size: 1.3rem;
 }
-.mute-btn{
-  width: 3%;
-  font-size: 2rem;
-  padding-left: 0.5em;
-  padding-right: 1em;
-  border-radius: 60%;
-  background-color: gold;
-  text-align: center;
+.mute-btn {
+    width: 3%;
+    font-size: 2rem;
+    padding-left: 0.5em;
+    padding-right: 1em;
+    border-radius: 60%;
+    background-color: gold;
+    text-align: center;
+    cursor: pointer;
 }
 
 /* two players */
@@ -141,7 +154,6 @@ body {
     margin: 2em auto;
     padding-block: 3rem;
     width: 500px;
-    /* display: flex; */
     flex-direction: column;
     align-items: center;
     color: var(--clr-neutral-900);
@@ -198,8 +210,8 @@ input::placeholder {
     border-radius: 4px;
     border: 1px solid black;
     font-family: goldeneye;
+    cursor: pointer;
 }
-
 
 /* Game */
 .game-body {
@@ -207,8 +219,6 @@ input::placeholder {
     display: none;
     justify-content: center;
     margin: 2em auto;
-    /* padding: 2em; */
-    /* background-color: silver; */
 }
 .game-board {
     background-color: var(--clr-neutral-200);
@@ -216,7 +226,6 @@ input::placeholder {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    /* gap: 0.5em; */
     align-content: space-around;
     position: relative;
     box-shadow: inset 0 0 5px grey;
@@ -267,10 +276,6 @@ input::placeholder {
     width: 300px;
     padding: 1em;
     color: var(--clr-neutral-900);
-    /* margin-right: 2.3em; */
-    /* display: flex;
-  justify-content: center;
-  align-items: center; */
 }
 
 .two-player,
@@ -327,7 +332,6 @@ input::placeholder {
 }
 .history {
     height: 300px;
-    /* max-height: 450px; */
     overflow-y: scroll;
     font-size: 1.2rem;
 }
@@ -358,6 +362,7 @@ li img {
     font-size: 1rem;
     border-radius: 4px;
     border: 1px solid black;
+    cursor: pointer;
 }
 /* Post game msg */
 
@@ -399,16 +404,15 @@ li img {
     font-size: 2rem;
 }
 
-
-.blinking-timer{
-  animation: blink-red 0.5s ease-in-out infinite alternate;  
+.blinking-timer {
+    animation: blink-red 0.5s ease-in-out infinite alternate;
 }
 
 @keyframes blink-red {
-  0% {
-    color: rgb(255, 0, 0);
-  }
-  100% {
-    color: rgb(177, 2, 2)
-  }
+    0% {
+        color: rgb(255, 0, 0);
+    }
+    100% {
+        color: rgb(177, 2, 2);
+    }
 }
