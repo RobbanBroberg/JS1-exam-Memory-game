@@ -219,6 +219,8 @@ function appendCardsToBoard(container, cardArray) {
     }
 }
 
+//adding eventlisterner to all quit game buttons
+
 for (let quitToMenuBtn of quitToMenuBtns) {
     quitToMenuBtn.addEventListener('click', () => {
         window.location.reload();
