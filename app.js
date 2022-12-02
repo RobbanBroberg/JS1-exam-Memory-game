@@ -32,16 +32,19 @@ let cardPairsToFind = 12; // Deafult 12 pairs
 
 const storedCards = []; // For storing which two cards is clicked for comparison
 
-function muteUnmute() {
-    if (soundOnOff == 0) {
-        soundOnOff = 1;
-        goldeneyeTheme.pause();
-        muteBtn.innerHTML = '&#128360';
-    } else {
-        soundOnOff = 0;
-        goldeneyeTheme.play();
-        muteBtn.innerHTML = '&#128362';
-    }
+
+//function for the sound mute/unmute button
+function muteUnmute(){
+  if(soundOnOff == 0){
+    soundOnOff = 1;
+    goldeneyeTheme.pause();
+    muteBtn.innerHTML = '&#128360';
+
+  }else{
+    soundOnOff = 0;
+    goldeneyeTheme.play();
+    muteBtn.innerHTML = '&#128362';
+  }
 }
 
 //Array ranomdizer insp. https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Modern_method
@@ -61,7 +64,7 @@ function updateGameHistory(storedCards, player) {
     let newSrc = storedCards[0].target.nextElementSibling;
     let historyItem = document.createElement('li');
     let cardImg = document.createElement('img');
-    cardImgSrc = newSrc.getAttribute('src');
+    let cardImgSrc = newSrc.getAttribute('src');
     console.log(newSrc);
     cardImg.setAttribute('src', cardImgSrc);
 
@@ -72,6 +75,8 @@ function updateGameHistory(storedCards, player) {
     gameHistoryList.insertAdjacentElement('afterbegin', historyItem);
 }
 
+
+// compares the cards that has been clicked and runs the handleMatching- and handleNonMatchingCards functions and returns a match-value either true or false
 function compareCards(storedCards) {
     let cardOneValue = storedCards[0].target.getAttribute('data-name');
     let cardTwoValue = storedCards[1].target.getAttribute('data-name');
@@ -86,6 +91,8 @@ function compareCards(storedCards) {
     }
 }
 
+
+//lowers the opacity of matched cards and unlocks the gameboard for new cards to be clicked
 function handleMatchingCards(storedCards) {
     let cardOne = storedCards[0].target.nextElementSibling;
     let cardTwo = storedCards[1].target.nextElementSibling;
@@ -102,6 +109,8 @@ function handleMatchingCards(storedCards) {
     }, 800);
 }
 
+
+// rotates non-matching cards back and unlocks the gameboard for new cards to be clicked
 function handleNonMatchingCards(storedCards) {
     let cardOneParent = storedCards[0].target.parentNode;
     let cardTwoParent = storedCards[1].target.parentNode;
@@ -118,6 +127,8 @@ function handleNonMatchingCards(storedCards) {
     }, 1000);
 }
 
+
+// Displays a message of who won the game, and the scores
 function handleTwoPlayerEndMsg() {
     gameEndMsg.setAttribute('style', 'display: flex;');
     endMsg.append(twoPlayerScores.cloneNode(true));
@@ -127,6 +138,7 @@ function handleTwoPlayerEndMsg() {
     endMsg.append(winnerMsg);
 }
 
+// Displays a message of the amount of time it took you to complete the game
 function handleTimeTrialEndMsg() {
     gameEndMsg.setAttribute('style', 'display: flex;');
     endMsg.append(timePlayerScore.cloneNode(true));
