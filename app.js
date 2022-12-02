@@ -48,21 +48,18 @@ function muteUnmute(){
 }
 
 //Array ranomdizer insp. https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Modern_method
-
+// A function that take one array as parameter, and returns all values in that array as a new shuffled array.
 function randomizeArray(array) {
     const result = [];
     for (i = array.length; i >= 1; i--) {
-        let randomIndex = Math.floor(Math.random() * i);
-        result.unshift(array[randomIndex]);
-        array.splice(randomIndex, 1);
+        let randomIndex = Math.floor(Math.random() * i); // find an index between 0 and the current length of the array
+        result.unshift(array[randomIndex]); // takes the value from the input array on that index and puts it first in the results array.
+        array.splice(randomIndex, 1); // removes the value of that index from the input array, shortening the array by one. array.length will be consistent with i.
     }
-    return result;
+    return result; // returns the now shuffled array.
 }
 
-// function start game => add players, hide registration, show game body, run game,
-
-// display update
-
+// A function for updating the game recap field, where the game logs which pair is found and by who.
 function updateGameHistory(storedCards, player) {
     let newSrc = storedCards[0].target.nextElementSibling;
     let historyItem = document.createElement('li');
@@ -85,8 +82,11 @@ function compareCards(storedCards) {
     let cardTwoValue = storedCards[1].target.getAttribute('data-name');
 
     if (cardOneValue == cardTwoValue) {
+        handleMatchingCards(storedCards);
+        cardPairsToFind -= 1;
         return true;
     } else {
+        handleNonMatchingCards(storedCards);
         return false;
     }
 }
@@ -149,42 +149,36 @@ function handleTimeTrialEndMsg() {
     endMsg.append(winnerMsg);
 }
 
-
-function handleGameControls(mode, match) {
-    if (mode == 'single') {
+// A function (former handleGameControl) that checks what game mode we are in, time trial or two player,
+// and calls the right function to score the player. And if all pairs is found, ends the game.
+function controlGameMode(mode, match) {
+    if (mode == 'timetrial') {
         scoreTimeTrial(match);
     } else if (mode == 'twoplayer') {
         scoreTwoPlayer(match);
     }
 
-    if (match == true) {
-        handleMatchingCards(storedCards);
-        cardPairsToFind -= 1;
-    } else {
-        handleNonMatchingCards(storedCards);
-    }
-
     if (cardPairsToFind == 0) {
-        if (mode == 'single') {
+        if (mode == 'timetrial') {
             handleTimeTrialEndMsg();
         } else {
             handleTwoPlayerEndMsg();
         }
     }
-    storedCards.splice(0, 2);
+    storedCards.splice(0, 2); // clears the stored cards after scoring the player
 }
 
-// function Click card to flip
+// function for what will happen when we click on a card
 function handleCardClick(card) {
-  if(lockBoard) return;
-  
+    if (lockBoard) return;
+
     let parent = card.target.parentNode;
     parent.classList.add('img-card-rotate');
     cardsClickedCounter = (cardsClickedCounter + 1) % 2;
     storedCards.push(card);
     if (cardsClickedCounter == 0) {
         isAMatch = compareCards(storedCards); // returns true or false
-        handleGameControls(gameMode, isAMatch);
+        controlGameMode(gameMode, isAMatch);
         lockBoard = true;
     }
     //Removes the eventlsitener so you can't press an open card
