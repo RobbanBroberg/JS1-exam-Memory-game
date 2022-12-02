@@ -101,7 +101,7 @@ function handleStartTwoPlayerGameBtnClick() {
     startTwoPlayerGame();
 }
 
-// eventlistener
+// adding eventlistener to startgamebtn for two players
 
 startTwoPlayerGameBtn.addEventListener('click', () => {
     handleStartTwoPlayerGameBtnClick();
