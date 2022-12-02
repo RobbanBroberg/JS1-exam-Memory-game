@@ -123,7 +123,7 @@ function handleDifficultyBtnClick() {
     difficultyContainer.setAttribute('style', 'display: none;');
     gameBodyContainer.setAttribute('style', 'display: flex;');
     timeTrialScoreBoard.setAttribute('style', 'display: block;');
-    gameMode = 'single';
+    gameMode = 'timetrial';
 }
 
 // for the difficulty Easy button
