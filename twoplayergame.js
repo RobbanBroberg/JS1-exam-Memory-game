@@ -68,6 +68,7 @@ function restartTwoPlayerGame() {
     gameHistoryList.innerHTML = '';
     playerOne.score = 0;
     playerTwo.score = 0;
+    cardPairsToFind = 12;
     gameEndMsg.setAttribute('style', 'display: none;');
     startTwoPlayerGame();
 }
@@ -78,7 +79,7 @@ function startTwoPlayerGame() {
     cardsClickedCounter = 0;
     let dubbleCards = cardArray.concat(cardArray);
     let randomizedCards = randomizeArray(dubbleCards);
-    appendCardsToBoard(gameBoard, randomizedCards, 'multi'); // calls the function that adds all cards to the board.
+    appendCardsToBoard(gameBoard, randomizedCards); // calls the function that adds all cards to the board.
     updateTwoPlayerScoreBoard();
 
     // Giving the reastart buttons their eventlistener

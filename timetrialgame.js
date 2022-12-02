@@ -10,7 +10,7 @@ const difficultyMediumBtn = document.querySelector('.difficulty-medium-btn');
 const difficultyHardBtn = document.querySelector('.difficulty-hard-btn');
 
 const timeDisplay = document.querySelector('.time-display');
-const currentTime = document.querySelector('.current-time')
+const currentTime = document.querySelector('.current-time');
 
 // To store player points
 let playerScore = 0;
@@ -47,8 +47,8 @@ function timer() {
     let secondsDisplayed = second < 10 ? `0${second}` : second;
     currentTime.innerText = `${minute}:${secondsDisplayed}`;
 
-    if(minute == 0 && second == 30) {
-      currentTime.classList.add('blinking-timer');
+    if (minute == 0 && second == 30) {
+        currentTime.classList.add('blinking-timer');
     }
 
     if (playerScore == maxPoints) {
@@ -67,7 +67,8 @@ function calculateCompletedInTime() {
     completedInTime = initialMinute * 60 - timeLeft;
     completedMinutes = Math.floor(completedInTime / 60);
     completedSeconds = completedInTime % 60;
-    let completedSecondsDisplayed = completedSeconds < 10 ? `0${completedSeconds}` : completedSeconds;
+    let completedSecondsDisplayed =
+        completedSeconds < 10 ? `0${completedSeconds}` : completedSeconds;
     return `${completedMinutes} : ${completedSecondsDisplayed}`;
 }
 
@@ -90,6 +91,7 @@ function restartTimeTrialGame() {
     gameBoard.innerHTML = '';
     gameHistoryList.innerHTML = '';
     clearInterval(timerId);
+    cardPairsToFind = maxPoints;
     gameEndMsg.setAttribute('style', 'display: none;');
     startTimeTrialGame();
 }
@@ -100,12 +102,11 @@ function startTimeTrialGame() {
     playerScore = 0;
     let dubbleCards = cardsByGameMode.concat(cardsByGameMode); // dubble the cards to have pairs
     let randomizedCards = randomizeArray(dubbleCards);
-    appendCardsToBoard(gameBoard, randomizedCards, 'single'); // calls the function that adds all cards to the board.
+    appendCardsToBoard(gameBoard, randomizedCards); // calls the function that adds all cards to the board.
     updateTimeTrialScoreBoard();
     minute = initialMinute;
     second = 0;
     timerId = setInterval(timer, 1000);
-    
 
     // Giving the reastart buttons their eventlistener
     for (let restartGameBtn of restartGameBtns) {
