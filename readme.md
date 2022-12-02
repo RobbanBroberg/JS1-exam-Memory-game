@@ -2,7 +2,7 @@
 
 The examiniation for the course Javascript part 1 is to create a memory game in groups of 2-3 students.
 
-## Specifikation
+## Specification
 
 -   A memory game that follows the ground rules specified down below or in the pdf "[MemoryGameRulesAndDesign](instructions_and_designsketch/MemoryGameRulesAndDesign.pdf)" (Swedish)
 -   The game shall handle two players
@@ -11,7 +11,11 @@ The examiniation for the course Javascript part 1 is to create a memory game in 
 ### Optional
 
 -   Make the card-flip animated
--   Create a hiscore that is saved in the localStorage ([mdn localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage))
+
+### Our own additions
+
+-   single player game, on time.
+-   background sound.
 
 ## Design
 
@@ -26,8 +30,3 @@ No demand for responsive design.
     - If the cards is a matching pair, current player gets a score and a new chance
     - If cards don't match, cards face down and next players turn
 3. The one with most points when all cards are opend, wins.
-
-## if(have time)
-
--   single player game, on time.
--   background sound.
